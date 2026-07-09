@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Category — The Smart Investor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --g:#029547;--g-deep:#0E5A30;--y:#FFC809;--ink:#1C2620;--ink-mid:#55605A;
+    --ink-soft:#8c8b7e;--line:#E7E0D1;--line-mid:#D6CCB7;--paper:#FBF8F1;--wash:#F2EDE0;--g-wash:#ECF2EA;
+    --bar:#0E3D27;--page-w:1440px;
+  }
+  html,body{background:var(--wash);}
+  body{font-family:'Archivo',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;color:inherit;}
+  .page{width:100%;max-width:var(--page-w);margin:0 auto;background:var(--paper);min-height:100vh;box-shadow:0 0 60px rgba(0,0,0,.05);}
+
+  /* top strip */
+  .ui-top{display:flex;align-items:center;gap:20px;padding:11px 56px;background:var(--bar);color:#fff;}
+  .ui-top .date{font-size:12px;letter-spacing:.4px;color:#bcc7b7;}
+  .ui-top .sp{flex:1;}
+  .ui-top .nt{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#fff;}
+  .ui-sub-btn{font-family:'Archivo';font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--y);color:var(--ink);border:0;border-radius:4px;padding:9px 20px;cursor:pointer;transition:.15s;}
+  .ui-sub-btn:hover{filter:brightness(.94);}
+
+  /* header */
+  .ui-hd{display:flex;align-items:center;gap:26px;padding:26px 56px;}
+  .ui-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:58px;line-height:.9;letter-spacing:-1px;color:var(--ink);}
+  .ui-logo .dot{color:var(--y);}
+  .ui-logo small{display:block;font-family:'Archivo';font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:9px;}
+  .ui-hsp{flex:1;}
+  .ui-search{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line-mid);border-radius:30px;padding:9px 18px;min-width:260px;}
+  .ui-search input{border:0;outline:0;background:transparent;font-family:'Archivo';font-size:13.5px;color:var(--ink);width:100%;}
+  .ui-search input::placeholder{color:var(--ink-soft);}
+  .ui-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .ui-burger i{width:26px;height:2px;background:var(--ink);display:block;border-radius:2px;}
+
+  /* category menu tabs */
+  .cat-nav{display:flex;gap:0;padding:6px 56px 0;align-items:stretch;border-top:1px solid var(--line);}
+  .cat-tab{flex:1;cursor:pointer;padding:20px 28px 20px 0;display:flex;flex-direction:column;justify-content:center;}
+  .cat-tab:not(:first-child){padding-left:28px;}
+  .cat-tab .cn{font-family:'Playfair Display',serif;font-weight:900;font-size:34px;line-height:.98;letter-spacing:-.6px;color:var(--ink);transition:color .18s;}
+  .cat-tab .cs{font-size:12px;color:var(--ink-soft);letter-spacing:.4px;margin-top:8px;}
+  .cat-tab .ub{height:3px;background:var(--g);width:0;transition:width .2s;margin-top:12px;}
+  .cat-tab:hover .cn{color:var(--g-deep);}
+  .cat-tab.on .cn{color:var(--g-deep);}
+  .cat-tab.on .ub{width:46px;}
+  .cat-div{width:1px;background:var(--line);}
+
+  /* hero */
+  .cat-hero{padding:44px 56px 34px;border-top:1px solid var(--line);}
+  .cat-kick{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-soft);padding-bottom:14px;border-bottom:2px solid var(--line);margin-bottom:24px;display:inline-block;}
+  .cat-title{font-family:'Playfair Display',serif;font-weight:900;font-size:76px;line-height:.98;letter-spacing:-2px;color:var(--ink);}
+  .cat-title .dot{color:var(--y);}
+  .cat-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:21px;color:var(--ink-mid);margin-top:18px;max-width:680px;line-height:1.4;}
+  .cat-meta{display:flex;gap:24px;align-items:center;margin-top:26px;flex-wrap:wrap;}
+  .cat-meta .m{font-size:12px;letter-spacing:.4px;color:var(--ink-soft);}
+  .cat-meta .m b{color:var(--ink);font-weight:700;}
+  .cat-meta .dv{width:1px;height:14px;background:var(--line-mid);}
+
+  /* leaderboard ad */
+  .ui-lb-wrap{padding:24px 56px;}
+  .ui-lb{border:2px solid var(--ink);padding:8px;position:relative;background:var(--paper);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .ui-lb img{display:block;width:100%;height:auto;}
+  .ad-label{position:absolute;top:8px;right:8px;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8f8c82;background:rgba(251,248,241,.85);padding:3px 7px;border-radius:3px;}
+
+  /* two-column shell: content + sidebar rail */
+  .cat-shell{display:grid;grid-template-columns:minmax(0,1fr) 328px;gap:56px;padding:8px 56px 24px;align-items:start;}
+  .cat-main{min-width:0;}
+  .cat-side{position:sticky;top:24px;display:flex;flex-direction:column;gap:26px;}
+
+  /* sidebar — most read */
+  .side-box{border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .side-h{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);padding:15px 20px;border-bottom:1px solid var(--line);background:var(--wash);}
+  .mr{display:flex;gap:15px;padding:15px 20px;border-top:1px solid var(--line);}
+  .mr:first-of-type{border-top:0;}
+  .mr .rn{font-family:'Playfair Display',serif;font-weight:900;font-size:28px;color:var(--line-mid);line-height:.9;flex:none;width:26px;}
+  .mr .rc{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--g);display:block;margin-bottom:4px;}
+  .mr .rt{font-size:14px;line-height:1.35;color:var(--ink);font-weight:600;transition:.15s;}
+  .mr:hover .rt{color:var(--g-deep);}
+
+  /* sidebar — newsletter */
+  .nl-card{background:var(--bar);color:#fff;border-radius:12px;padding:24px;}
+  .nl-card h3{font-family:'Playfair Display',serif;font-weight:700;font-size:21px;line-height:1.15;margin-bottom:8px;}
+  .nl-card p{font-size:13px;line-height:1.55;color:#cdd8cf;margin-bottom:15px;}
+  .nl-card .nlrow{display:flex;gap:8px;}
+  .nl-card input{flex:1;min-width:0;border:0;border-radius:6px;padding:11px 12px;font-family:'Archivo';font-size:13px;color:var(--ink);outline:0;}
+  .nl-card button{background:var(--y);color:var(--ink);border:0;border-radius:6px;font-family:'Archivo';font-weight:700;font-size:12px;letter-spacing:.5px;padding:11px 15px;cursor:pointer;transition:.15s;}
+  .nl-card button:hover{filter:brightness(.94);}
+
+  /* sidebar — vertical ad */
+  .ad-rail{}
+  .ad-rail .rlbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-bottom:8px;}
+  .ad-rail .rbox{border:1px solid var(--line-mid);background:var(--wash);overflow:hidden;display:flex;justify-content:center;}
+  .ad-rail .rbox img{display:block;width:125px;height:600px;max-width:100%;}
+
+  /* in-feed horizontal ad (content width) */
+  .infeed-ad{position:relative;margin:8px 0;border:1px solid var(--line-mid);background:var(--wash);overflow:hidden;}
+  .infeed-ad img{display:block;width:100%;height:auto;}
+  .infeed-ad .il{position:absolute;top:8px;right:8px;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8f8c82;background:rgba(251,248,241,.85);padding:3px 7px;border-radius:3px;}
+
+  /* full-width "more like this" below the two-column grid */
+  .more-wrap{padding:20px 56px 72px;}
+
+  /* listing */
+  .list-kick{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-soft);padding-bottom:14px;border-bottom:2px solid var(--line);margin-bottom:0;}
+
+  /* lead story */
+  .lead{display:grid;grid-template-columns:1.15fr 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--line);align-items:center;}
+  .lead .limg{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--g-wash);aspect-ratio:16/10;}
+  .lead .limg img{width:100%;height:100%;object-fit:cover;display:block;}
+  .lead .cat{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g);}
+  .lead h2{font-family:'Playfair Display',serif;font-weight:900;font-size:38px;line-height:1.08;letter-spacing:-.8px;color:var(--ink);margin:12px 0 14px;}
+  .lead p{font-size:15.5px;line-height:1.7;color:var(--ink-mid);margin-bottom:16px;}
+  .lead .amt{font-size:12.5px;color:var(--ink-soft);}
+  .lead .amt b{color:var(--ink);font-weight:700;}
+
+  /* article cards */
+  .ui-art{display:flex;gap:22px;padding:24px 0;border-bottom:1px solid var(--line);cursor:pointer;}
+  .ui-art .thumb{width:150px;height:104px;flex:none;border-radius:6px;overflow:hidden;border:1px solid var(--line);background:var(--g-wash);}
+  .ui-art .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ui-art .txt{flex:1;}
+  .ui-art .cat{font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g);}
+  .ui-art h3{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;line-height:1.25;margin:6px 0 8px;color:var(--ink);transition:color .15s;}
+  .ui-art:hover h3{color:var(--g-deep);}
+  .ui-art .amt{font-size:12px;color:var(--ink-soft);}
+  .ui-art .amt b{color:var(--ink-mid);font-weight:600;}
+
+  .load-more{display:block;margin:36px 0 0;font-family:'Archivo';font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:transparent;color:var(--g-deep);border:1.5px solid var(--g-deep);border-radius:30px;padding:13px 34px;cursor:pointer;transition:.15s;}
+  .load-more:hover{background:var(--g-deep);color:#fff;}
+
+  /* more like this */
+  .more-sec{margin-top:0;}
+  .more-kick{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-soft);padding-bottom:14px;border-bottom:2px solid var(--line);margin-bottom:24px;}
+  .more-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .more-card{cursor:pointer;}
+  .more-card .mimg{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--g-wash);aspect-ratio:4/3;margin-bottom:12px;}
+  .more-card .mimg img{width:100%;height:100%;object-fit:cover;display:block;}
+  .more-card .cat{font-size:10px;font-weight:700;letter-spacing:1.3px;text-transform:uppercase;color:var(--g);}
+  .more-card h4{font-family:'Playfair Display',serif;font-weight:700;font-size:16px;line-height:1.28;margin-top:6px;color:var(--ink);transition:color .15s;}
+  .more-card:hover h4{color:var(--g-deep);}
+
+  /* footer */
+  .ui-ft{display:flex;align-items:center;gap:22px;padding:26px 56px;background:var(--bar);color:#fff;}
+  .ui-ft .fl{font-family:'Playfair Display',serif;font-weight:900;font-size:32px;line-height:1;letter-spacing:-.5px;color:#fff;}
+  .ui-ft .fl .dot{color:var(--y);}
+  .ui-ft .cp{font-size:12px;color:#bcc7b7;}
+  .ui-ft .fsp{flex:1;}
+  .ui-ft .fnav{display:flex;gap:22px;}
+  .ui-ft .fnav a{font-size:13px;color:#dfe7dd;transition:.15s;}
+  .ui-ft .fnav a:hover{color:var(--y);}
+
+  /* responsive */
+  @media (max-width:768px){
+    html,body{overflow-x:hidden;}
+    .page{box-shadow:none;}
+    .ui-top{flex-wrap:wrap;gap:6px 12px;padding:10px 16px;}
+    .ui-top .sp{display:none;}
+    .ui-top .nt{font-size:13px;order:3;width:100%;}
+    .ui-hd{flex-wrap:wrap;gap:12px;padding:16px 16px;}
+    .ui-logo{font-size:34px;flex:1;}
+    .ui-logo small{font-size:9.5px;margin-top:6px;}
+    .ui-hsp{display:none;}
+    .ui-search{order:3;width:100%;min-width:0;}
+    .ui-burger{order:2;}
+    .cat-nav{flex-direction:column;padding:0 16px;}
+    .cat-tab{padding:16px 0!important;border-bottom:1px solid var(--line);}
+    .cat-tab:last-of-type{border-bottom:0;}
+    .cat-div{display:none;}
+    .cat-hero{padding:28px 16px 22px;}
+    .cat-title{font-size:44px;letter-spacing:-1px;}
+    .cat-sub{font-size:17px;}
+    .ui-lb-wrap{padding:14px 16px;}
+    .cat-shell{grid-template-columns:1fr;gap:36px;padding:16px 16px 24px;}
+    .cat-side{position:static;order:2;}
+    .more-wrap{padding:8px 16px 48px;}
+    .lead{grid-template-columns:1fr;gap:18px;}
+    .lead h2{font-size:28px;}
+    .ui-art .thumb{width:104px;height:76px;}
+    .ui-art h3{font-size:18px;}
+    .ui-ft{flex-wrap:wrap;gap:12px 18px;padding:24px 16px;}
+    .ui-ft .fsp{display:none;}
+    .ui-ft .cp{width:100%;order:3;}
+    .ui-ft .fnav{width:100%;gap:18px;order:4;}
+    .more-grid{grid-template-columns:1fr 1fr;gap:20px;}
+  }
+</style>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#0E3D27"></rect>
+      <text x="600" y="430" text-anchor="middle" font-family="Georgia,'Playfair Display',serif" font-weight="900" font-size="150" fill="#FBF8F1">Nation</text>
+      <circle cx="770" cy="430" r="16" fill="#FFC809"></circle>
+      <text x="600" y="510" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" letter-spacing="7" fill="#8ea78f">THE SMART INVESTOR</text>
+    </svg>
+  </template>
+
+  <div class="page">
+
+    <!-- top strip -->
+    <div class="ui-top">
+      <span class="date" id="topDate">Monday, 15 June 2026</span>
+      <span class="sp"></span>
+      <span class="nt">Stay informed. <b>No noise.</b></span>
+      <button class="ui-sub-btn">Subscribe</button>
+    </div>
+
+    <!-- header -->
+    <div class="ui-hd">
+      <div class="ui-logo"><a href="TSI HM V4 - Standalone.html"><span style="color:var(--g)">T</span><span style="color:var(--y)">S</span><span style="color:var(--g)">I</span><span class="dot">.</span></a><small>The Smart Investor — est. 2003 · revived 2023</small></div>
+      <div class="ui-hsp"></div>
+      <div class="ui-search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8a938b" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        <input placeholder="Search The Smart Investor">
+      </div>
+      <div class="ui-burger" onclick="openMenu()"><i></i><i></i><i></i></div>
+    </div>
+
+    <!-- leaderboard ad -->
+    <div class="ui-lb-wrap">
+      <div class="ui-lb"><span class="ad-label">Advertisement</span><img src="assets/ad-leaderboard.png" alt="Advertisement"></div>
+    </div>
+
+    <!-- content -->
+    <div class="cat-shell">
+      <div class="cat-main">
+        <div class="list-kick" id="listKick">Latest in this section</div>
+        <div id="leadSlot"></div>
+        <div id="listSlot"></div>
+        <button class="load-more">Load more stories</button>
+      </div>
+
+      <aside class="cat-side">
+        <div class="side-box">
+          <div class="side-h">Most Read</div>
+          <div id="mostRead"></div>
+        </div>
+        <div class="nl-card">
+          <h3>The Morning Brief</h3>
+          <p>Markets, policy and the region — in your inbox before 8am.</p>
+          <div class="nlrow"><input placeholder="you@email.com"><button>Join</button></div>
+        </div>
+        <div class="ad-rail">
+          <div class="rlbl">Advertisement</div>
+          <div class="rbox"><img src="assets/ad-skyscraper.jpg" alt="Advertisement"></div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- more like this (full content width) -->
+    <div class="more-wrap">
+      <section class="more-sec">
+        <div class="more-kick">More like this</div>
+        <div class="more-grid" id="moreSlot"></div>
+      </section>
+    </div>
+
+    <!-- footer -->
+    <div class="ui-ft">
+      <div class="fl">T<span style="color:var(--y)">S</span>I<span class="dot">.</span></div>
+      <span class="cp">© 2026 The Smart Investor</span>
+      <div class="fsp"></div>
+      <div class="fnav"><a href="TSI HM V4 - Standalone.html?disc=1">Disclaimer</a><a href="TSI About.html">About</a><a href="TSI Contact.html">Contact</a></div>
+    </div>
+
+  </div>
+
+  <script>
+    const IMG = ['assets/art-1.jpg','assets/art-2.jpg','assets/art-3.jpg','assets/art-4.jpg'];
+    const EXTRA = {
+      nation: [
+        {cat:'Trade', headline:'Export orders rebound as electronics demand steadies', byline:'Cheryl Tan', time:'2 days ago · 3 min read', img:IMG[1]},
+        {cat:'Labour', headline:'Wage growth outpaces inflation for a second straight quarter', byline:'Rajiv Menon', time:'3 days ago · 4 min read', img:IMG[2]},
+        {cat:'Housing', headline:'New cooling measures target foreign buyers in prime districts', byline:'Nurul Iman', time:'3 days ago · 5 min read', img:IMG[3]},
+        {cat:'Energy', headline:'Grid operator maps out path to 2035 renewable target', byline:'Arjun Pillai', time:'4 days ago · 4 min read', img:IMG[0]},
+        {cat:'Budget 2026', headline:'Small-business relief package clears committee stage', byline:'Cheryl Tan', time:'4 days ago · 3 min read', img:IMG[1]},
+        {cat:'Public Finance', headline:'Debt-to-GDP ratio falls to its lowest level in six years', byline:'Rajiv Menon', time:'5 days ago · 4 min read', img:IMG[2]},
+        {cat:'Regulation', headline:'Watchdog proposes tougher rules on related-party deals', byline:'Nurul Iman', time:'5 days ago · 5 min read', img:IMG[3]},
+        {cat:'Infrastructure', headline:'Port expansion enters final phase ahead of schedule', byline:'Arjun Pillai', time:'6 days ago · 3 min read', img:IMG[0]}
+      ],
+      decisions: [
+        {cat:'M&A', headline:'Healthcare group weighs spin-off of its diagnostics arm', byline:'Nurul Iman', time:'2 days ago · 4 min read', img:IMG[3]},
+        {cat:'Earnings', headline:'Retailer lifts full-year outlook on strong festive sales', byline:'Rajiv Menon', time:'2 days ago · 3 min read', img:IMG[0]},
+        {cat:'Strategy', headline:'Airline bets on premium cabins to defend margins', byline:'Cheryl Tan', time:'3 days ago · 5 min read', img:IMG[1]},
+        {cat:'Boardroom', headline:'Chair steps down after a decade at the helm', byline:'Arjun Pillai', time:'3 days ago · 4 min read', img:IMG[2]},
+        {cat:'Deals', headline:'Private equity circles regional data-centre operator', byline:'Nurul Iman', time:'4 days ago · 4 min read', img:IMG[3]},
+        {cat:'Leadership', headline:'Fintech names veteran banker as new chief risk officer', byline:'Rajiv Menon', time:'4 days ago · 3 min read', img:IMG[0]},
+        {cat:'Restructuring', headline:'Conglomerate splits its energy and property divisions', byline:'Cheryl Tan', time:'5 days ago · 5 min read', img:IMG[1]},
+        {cat:'Governance', headline:'Investors back an overhaul of the executive-pay framework', byline:'Arjun Pillai', time:'6 days ago · 4 min read', img:IMG[2]}
+      ],
+      asia: [
+        {cat:'Markets', headline:'Jakarta bourse hits a record as inflows accelerate', byline:'Cheryl Tan', time:'2 days ago · 3 min read', img:IMG[2]},
+        {cat:'Currencies', headline:'Baht steadies after the central bank signals patience', byline:'Nurul Iman', time:'2 days ago · 4 min read', img:IMG[3]},
+        {cat:'Trade', headline:'Regional chip supply chain deepens with a new fab', byline:'Rajiv Menon', time:'3 days ago · 5 min read', img:IMG[0]},
+        {cat:'Property', headline:'Ho Chi Minh City office glut pressures landlords', byline:'Arjun Pillai', time:'3 days ago · 4 min read', img:IMG[1]},
+        {cat:'Macro', headline:'Philippines holds rates as growth stays resilient', byline:'Cheryl Tan', time:'4 days ago · 3 min read', img:IMG[2]},
+        {cat:'Energy', headline:'Malaysia courts investment in solar manufacturing', byline:'Nurul Iman', time:'4 days ago · 4 min read', img:IMG[3]},
+        {cat:'Tech', headline:'Regional e-commerce margins turn positive at scale', byline:'Rajiv Menon', time:'5 days ago · 5 min read', img:IMG[0]},
+        {cat:'Banking', headline:'Cross-border payment link goes live across four markets', byline:'Arjun Pillai', time:'6 days ago · 3 min read', img:IMG[1]}
+      ]
+    };
+    const CATS = {
+      nation: {
+        title: 'Nation', kick: 'Section · Policy & the State',
+        sub: 'Budgets, legislation, and the machinery of government — how the decisions made in the capital reach your portfolio.',
+        editor: 'Nurul Iman', updated: 'today · 14 new',
+        lead: { cat:'Fiscal Policy', img:IMG[0],
+          headline:'Parliament passes landmark fiscal reform after marathon session',
+          dek:'The overnight vote reshapes capital-gains treatment and the SST base for the first time in a decade — analysts call it the most consequential budget bill in years.',
+          byline:'Nurul Iman', time:'2 hours ago · 6 min read' },
+        items: [
+          {cat:'Budget 2026', img:IMG[1], headline:'What the new capital-gains bands mean for long-term investors', byline:'Rajiv Menon', time:'Today · 4 min read'},
+          {cat:'Public Finance', img:IMG[2], headline:'Treasury lifts growth forecast to 4.2% on resilient domestic demand', byline:'Cheryl Tan', time:'Today · 3 min read'},
+          {cat:'Regulation', img:IMG[3], headline:'Central bank tightens disclosure rules for listed state entities', byline:'Arjun Pillai', time:'Yesterday · 5 min read'},
+          {cat:'Governance', img:IMG[0], headline:'Sovereign fund posts steadiest annual return since inception', byline:'Nurul Iman', time:'Yesterday · 4 min read'},
+          {cat:'Taxation', img:IMG[1], headline:'SST rebroadening: the five sectors that will feel it first', byline:'Rajiv Menon', time:'2 days ago · 6 min read'},
+          {cat:'Infrastructure', img:IMG[2], headline:'National rail expansion gets green light in revised spending plan', byline:'Cheryl Tan', time:'2 days ago · 3 min read'}
+        ]
+      },
+      decisions: {
+        title: 'Decisions', kick: 'Section · Boardrooms & Power',
+        sub: 'The calls that move markets — leadership shifts, deals, and the strategy behind the region\u2019s biggest companies.',
+        editor: 'Cheryl Tan', updated: 'today · 9 new',
+        lead: { cat:'Leadership', img:IMG[2],
+          headline:'Founder steps back as conglomerate names first outside chief executive',
+          dek:'A generational handover at one of the region\u2019s largest family-run groups signals a new era of institutional governance — and tests investor confidence.',
+          byline:'Cheryl Tan', time:'3 hours ago · 5 min read' },
+        items: [
+          {cat:'M&A', img:IMG[3], headline:'Two logistics giants confirm merger talks valued near $8 billion', byline:'Arjun Pillai', time:'Today · 4 min read'},
+          {cat:'Strategy', img:IMG[0], headline:'Bank pivots to fee income as rate cycle turns', byline:'Nurul Iman', time:'Today · 3 min read'},
+          {cat:'Boardroom', img:IMG[1], headline:'Activist investor secures two seats after proxy battle', byline:'Rajiv Menon', time:'Yesterday · 6 min read'},
+          {cat:'Deals', img:IMG[2], headline:'Property developer offloads mall portfolio to reset balance sheet', byline:'Cheryl Tan', time:'Yesterday · 4 min read'},
+          {cat:'Earnings', img:IMG[3], headline:'Chipmaker beats guidance but flags cautious second half', byline:'Arjun Pillai', time:'2 days ago · 5 min read'},
+          {cat:'Leadership', img:IMG[0], headline:'Telco appoints CFO from rival in surprise reshuffle', byline:'Nurul Iman', time:'2 days ago · 3 min read'}
+        ]
+      },
+      asia: {
+        title: "What's News Asia", kick: 'Section · The Region in Motion',
+        sub: 'Markets, macro and money across the region — the trends connecting Singapore, Kuala Lumpur, Jakarta, Bangkok and beyond.',
+        editor: 'Arjun Pillai', updated: 'today · 11 new',
+        lead: { cat:'Regional Markets', img:IMG[1],
+          headline:'Southeast Asian equities rally as foreign inflows return',
+          dek:'A weaker dollar and cooling inflation are drawing global funds back to the region\u2019s bourses, with Jakarta and Bangkok leading the advance.',
+          byline:'Arjun Pillai', time:'1 hour ago · 5 min read' },
+        items: [
+          {cat:'Currencies', img:IMG[2], headline:'Ringgit and rupiah firm as rate-cut bets build across the region', byline:'Cheryl Tan', time:'Today · 4 min read'},
+          {cat:'Trade', img:IMG[3], headline:'New regional pact lowers tariffs on electronics components', byline:'Nurul Iman', time:'Today · 3 min read'},
+          {cat:'Energy', img:IMG[0], headline:'Indonesia accelerates nickel downstreaming with fresh incentives', byline:'Rajiv Menon', time:'Yesterday · 6 min read'},
+          {cat:'Property', img:IMG[1], headline:'Bangkok condo market cools as supply overtakes demand', byline:'Arjun Pillai', time:'Yesterday · 4 min read'},
+          {cat:'Tech', img:IMG[2], headline:'Regional super-apps race to profitability amid funding drought', byline:'Cheryl Tan', time:'2 days ago · 5 min read'},
+          {cat:'Macro', img:IMG[3], headline:'Vietnam holds rates as export engine regains momentum', byline:'Nurul Iman', time:'2 days ago · 3 min read'}
+        ]
+      }
+    };
+
+    function getCat(){
+      const q = new URLSearchParams(location.search).get('cat');
+      return CATS[q] ? q : 'nation';
+    }
+
+    function render(){
+      const key = getCat();
+      const c = CATS[key];
+      document.title = c.title + ' — The Smart Investor';
+
+      // active tab
+      document.querySelectorAll('.cat-tab').forEach(t=>{
+        t.classList.toggle('on', t.dataset.cat === key);
+      });
+
+      // hero (optional)
+      const set = (id, fn) => { const el = document.getElementById(id); if(el) fn(el); };
+      set('heroKick', el => el.textContent = c.kick);
+      set('heroTitle', el => el.innerHTML = c.title + '<span class="dot">.</span>');
+      set('heroSub', el => el.textContent = c.sub);
+      set('metaCount', el => el.textContent = (c.items.length + 1));
+      set('metaUpd', el => el.textContent = c.updated);
+      set('metaEd', el => el.textContent = c.editor);
+      set('listKick', el => el.textContent = 'Latest in ' + c.title);
+
+      // build an article-page URL for a story
+      function artUrl(a, extra){
+        var p = new URLSearchParams();
+        p.set('title', a.headline);
+        p.set('cat', a.cat);
+        p.set('catkey', (extra && extra.catkey) || key);
+        if(a.byline) p.set('by', a.byline);
+        if(a.time) p.set('time', a.time);
+        if(a.img) p.set('img', a.img);
+        if(a.dek) p.set('dek', a.dek);
+        return 'TSI Article.html?' + p.toString();
+      }
+
+      // lead
+      const L = c.lead;
+      document.getElementById('leadSlot').innerHTML =
+        '<a class="lead" href="'+artUrl(L)+'">'+
+          '<div class="limg"><img src="'+L.img+'" alt=""></div>'+
+          '<div class="ltxt">'+
+            '<div class="cat">'+L.cat+'</div>'+
+            '<h2>'+L.headline+'</h2>'+
+            '<p>'+L.dek+'</p>'+
+            '<div class="amt"><b>'+L.byline+'</b> · '+L.time+'</div>'+
+          '</div>'+
+        '</a>';
+
+      // card renderer (radius rhythm continues across appended batches)
+      function artCard(a, i){
+        var rad = '';
+        var m = i % 4;
+        if(m === 1) rad = 'border-top-right-radius:60px;';
+        else if(m === 3) rad = 'border-top-left-radius:60px;';
+        return '<a class="ui-art" href="'+artUrl(a)+'">'+
+          '<div class="thumb" style="'+rad+'"><img src="'+a.img+'" alt=""></div>'+
+          '<div class="txt">'+
+            '<div class="cat">'+a.cat+'</div>'+
+            '<h3>'+a.headline+'</h3>'+
+            '<div class="amt"><b>'+a.byline+'</b> · '+a.time+'</div>'+
+          '</div>'+
+        '</a>';
+      }
+
+      // list (with an in-feed horizontal ad after the 3rd story)
+      document.getElementById('listSlot').innerHTML = c.items.map(function(a, i){
+        var card = artCard(a, i);
+        if(i === 2){
+          card += '<div class="infeed-ad"><span class="il">Advertisement</span><img src="assets/ad-leaderboard.png" alt="Advertisement"></div>';
+        }
+        return card;
+      }).join('');
+
+      // load more — append extra stories in batches of 4, then hide the button
+      var lm = document.querySelector('.load-more');
+      if(lm){
+        var extra = EXTRA[key] || [];
+        var shown = 0;
+        var startIdx = c.items.length;
+        lm.style.display = extra.length ? 'block' : 'none';
+        lm.onclick = function(){
+          var batch = extra.slice(shown, shown + 4);
+          var frag = batch.map(function(a, j){ return artCard(a, startIdx + shown + j); }).join('');
+          document.getElementById('listSlot').insertAdjacentHTML('beforeend', frag);
+          shown += batch.length;
+          if(shown >= extra.length) lm.style.display = 'none';
+        };
+      }
+
+      // most read sidebar (this category's top stories)
+      document.getElementById('mostRead').innerHTML = c.items.slice(0, 5).map(function(a, i){
+        return '<a class="mr" href="'+artUrl(a)+'">'+
+          '<div class="rn">'+(i+1)+'</div>'+
+          '<div><span class="rc">'+a.cat+'</span><span class="rt">'+a.headline+'</span></div>'+
+        '</a>';
+      }).join('');
+
+      // more like this — cross-section picks
+      const pool = [];
+      Object.keys(CATS).forEach(function(k2){
+        if(k2 === key) return;
+        const cc = CATS[k2];
+        pool.push({cat:cc.lead.cat, headline:cc.lead.headline, img:cc.lead.img, byline:cc.lead.byline, time:cc.lead.time, dek:cc.lead.dek, catkey:k2});
+        cc.items.forEach(function(a){ pool.push({cat:a.cat, headline:a.headline, img:a.img, byline:a.byline, time:a.time, catkey:k2}); });
+      });
+      const more = pool.slice(0, 4);
+      document.getElementById('moreSlot').innerHTML = more.map(function(a){
+        return '<a class="more-card" href="'+artUrl(a, {catkey:a.catkey})+'">'+
+          '<div class="mimg"><img src="'+a.img+'" alt=""></div>'+
+          '<div class="cat">'+a.cat+'</div>'+
+          '<h4>'+a.headline+'</h4>'+
+        '</a>';
+      }).join('');
+    }
+
+    // date
+    document.getElementById('topDate').textContent =
+      new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+    render();
+  </script>
+
+  <style>
+  .nav-menu{position:fixed;inset:0;z-index:10000;background:var(--bar);color:#fff;display:none;flex-direction:column;padding:26px 56px 40px;overflow-y:auto;}
+  .nav-menu.open{display:flex;}
+  .nav-menu .nm-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.15);}
+  .nav-menu .nm-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;letter-spacing:-1px;color:#fff;}
+  .nav-menu .nm-logo .dot{color:var(--y);}
+  .nav-menu .nm-close{font-family:'Archivo';font-size:13px;font-weight:600;letter-spacing:.5px;color:#fff;background:rgba(255,255,255,.12);border:0;border-radius:30px;padding:10px 20px;cursor:pointer;transition:.15s;}
+  .nav-menu .nm-close:hover{background:rgba(255,255,255,.22);}
+  .nav-menu .nm-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;padding:40px 0;}
+  .nav-menu .nm-h{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--y);margin-bottom:18px;}
+  .nav-menu .nm-sections a{display:block;font-family:'Playfair Display',serif;font-weight:700;font-size:32px;letter-spacing:-.5px;color:#fff;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);transition:.15s;}
+  .nav-menu .nm-sections a:hover{color:var(--y);}
+  .nav-menu .nm-sections a .ct{display:block;font-family:'Archivo';font-size:12px;font-weight:500;letter-spacing:.5px;color:#9fb4a6;margin-top:4px;}
+  .nav-menu .nm-pages a{display:block;font-family:'Archivo';font-size:16px;color:#dfe7dd;padding:10px 0;transition:.15s;}
+  .nav-menu .nm-pages a:hover{color:var(--y);}
+  .nav-menu .nm-foot{margin-top:auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);}
+  .nav-menu .nm-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+  .nav-menu .nm-tags a{font-size:12.5px;color:#dfe7dd;border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:6px 15px;transition:.15s;}
+  .nav-menu .nm-tags a:hover{background:var(--y);color:var(--ink);border-color:var(--y);}
+  @media (max-width:768px){
+    .nav-menu{padding:22px 18px 30px;}
+    .nav-menu .nm-grid{grid-template-columns:1fr;gap:28px;padding:24px 0 8px;}
+    .nav-menu .nm-sections a{font-size:24px;}
+    .nav-menu .nm-logo{font-size:30px;}
+  }
+  </style>
+  <div class="nav-menu" id="mainMenu">
+    <div class="nm-top">
+      <div class="nm-logo">T<span style="color:var(--y)">S</span>I<span class="dot">.</span></div>
+      <button class="nm-close" onclick="closeMenu()">Close ✕</button>
+    </div>
+    <div class="nm-grid">
+      <div class="nm-sections">
+        <div class="nm-h">Sections</div>
+        <a href="TSI Category.html?cat=nation">Nation<span class="ct">Policy · Economy</span></a>
+        <a href="TSI Category.html?cat=decisions">Decisions<span class="ct">Boardrooms · Power</span></a>
+        <a href="TSI Category.html?cat=asia">What's News Asia<span class="ct">ASEAN · China</span></a>
+      </div>
+      <div class="nm-company">
+        <div class="nm-h">The Company</div>
+        <div class="nm-pages">
+          <a href="TSI About.html">About Us</a>
+          <a href="TSI Contact.html">Contact Us</a>
+          <a href="TSI HM V4 - Standalone.html?disc=1">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+    <div class="nm-foot">
+      <div class="nm-h">Trending topics</div>
+      <div class="nm-tags">
+        <a href="#">#business</a><a href="#">#markets</a><a href="#">#politics</a><a href="#">#economy</a><a href="#">#budget2026</a><a href="#">#property</a><a href="#">#klse</a><a href="#">#esg</a><a href="#">#tech</a><a href="#">#asean</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    function openMenu(){document.getElementById('mainMenu').classList.add('open');document.body.style.overflow='hidden';}
+    function closeMenu(){document.getElementById('mainMenu').classList.remove('open');document.body.style.overflow='';}
+  </script>
+
+</body>
+</html>

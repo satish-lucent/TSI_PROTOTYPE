@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — The Smart Investor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --g:#029547;--g-deep:#0E5A30;--y:#FFC809;--ink:#1C2620;--ink-mid:#55605A;
+    --ink-soft:#8c8b7e;--line:#E7E0D1;--line-mid:#D6CCB7;--paper:#FBF8F1;--wash:#F2EDE0;--g-wash:#ECF2EA;
+    --bar:#0E3D27;--page-w:1440px;
+  }
+  html,body{background:var(--wash);}
+  body{font-family:'Archivo',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;color:inherit;}
+  .page{width:100%;max-width:var(--page-w);margin:0 auto;background:var(--paper);min-height:100vh;box-shadow:0 0 60px rgba(0,0,0,.05);}
+
+  /* top strip */
+  .ui-top{display:flex;align-items:center;gap:20px;padding:11px 56px;background:var(--bar);color:#fff;}
+  .ui-top .date{font-size:12px;letter-spacing:.4px;color:#bcc7b7;}
+  .ui-top .sp{flex:1;}
+  .ui-top .nt{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#fff;}
+  .ui-sub-btn{font-family:'Archivo';font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--y);color:var(--ink);border:0;border-radius:4px;padding:9px 20px;cursor:pointer;transition:.15s;}
+  .ui-sub-btn:hover{filter:brightness(.94);}
+
+  /* header */
+  .ui-hd{display:flex;align-items:center;gap:26px;padding:26px 56px;}
+  .ui-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:58px;line-height:.9;letter-spacing:-1px;color:var(--ink);}
+  .ui-logo .dot{color:var(--y);}
+  .ui-logo small{display:block;font-family:'Archivo';font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:9px;}
+  .ui-hsp{flex:1;}
+  .ui-search{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line-mid);border-radius:30px;padding:9px 18px;min-width:260px;}
+  .ui-search input{border:0;outline:0;background:transparent;font-family:'Archivo';font-size:13.5px;color:var(--ink);width:100%;}
+  .ui-search input::placeholder{color:var(--ink-soft);}
+  .ui-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .ui-burger i{width:26px;height:2px;background:var(--ink);display:block;border-radius:2px;}
+
+  /* hero */
+  .ab-hero{position:relative;padding:70px 56px 104px;border-top:1px solid var(--line);background:var(--bar);color:#fff;overflow:hidden;}
+  .ab-hero::after{content:'';position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,200,9,.16),transparent 68%);pointer-events:none;}
+  .ab-hero .rule{width:54px;height:4px;background:var(--y);margin-bottom:26px;}
+  .ab-kick{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--y);margin-bottom:18px;}
+  .ab-title{font-family:'Playfair Display',serif;font-weight:900;font-size:66px;line-height:1.02;letter-spacing:-1.6px;color:#fff;max-width:15ch;}
+  .ab-title .dot{color:var(--y);}
+  .ab-lede{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;line-height:1.5;color:#cfe0d3;margin-top:26px;max-width:60ch;}
+
+  /* floating stats band */
+  .ab-stats{position:relative;z-index:2;margin:-56px 56px 0;background:var(--paper);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden;}
+  .ab-stats .st{padding:32px 34px;border-right:1px solid var(--line);}
+  .ab-stats .st:last-child{border-right:0;}
+  .ab-stats .sn{font-family:'Playfair Display',serif;font-weight:900;font-size:46px;letter-spacing:-1px;color:var(--g-deep);line-height:1;}
+  .ab-stats .sl{font-size:12.5px;color:var(--ink-soft);letter-spacing:.4px;margin-top:10px;line-height:1.4;}
+
+  /* section intro */
+  .sec-intro{text-align:center;max-width:720px;margin:0 auto;padding:72px 24px 8px;}
+  .sec-intro .eb{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--g);margin-bottom:16px;}
+  .sec-intro h2{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;letter-spacing:-1px;color:var(--ink);line-height:1.08;}
+  .sec-intro p{font-size:16px;line-height:1.7;color:var(--ink-mid);margin-top:16px;}
+
+  /* story two-column */
+  .ab-story{padding:36px 56px 8px;column-count:2;column-gap:56px;max-width:1120px;margin:0 auto;}
+  .ab-story p{font-size:16.5px;line-height:1.85;color:#2c352f;margin-bottom:20px;break-inside:avoid;}
+  .ab-story p b{color:var(--ink);font-weight:600;}
+  .ab-story p.lead::first-letter{font-family:'Playfair Display',serif;font-weight:900;font-size:64px;line-height:.78;float:left;padding:6px 12px 0 0;color:var(--g-deep);}
+
+  /* values grid */
+  .ab-values{padding:24px 56px 8px;}
+  .val-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .val{background:var(--paper);border:1px solid var(--line);border-top:3px solid var(--g);border-radius:10px;padding:26px 24px;transition:.18s;}
+  .val:hover{border-color:var(--line-mid);}
+  .val .vn{font-family:'Playfair Display',serif;font-weight:900;font-size:22px;color:var(--g-deep);line-height:1;}
+  .val .vh{font-family:'Playfair Display',serif;font-weight:700;font-size:19px;color:var(--ink);margin:14px 0 8px;}
+  .val .vt{font-size:14px;line-height:1.6;color:var(--ink-mid);}
+
+  /* quote band */
+  .ab-quote{margin:64px 0 0;padding:64px 56px;background:var(--g-wash);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center;}
+  .ab-quote .qm{font-family:'Playfair Display',serif;font-weight:900;font-size:60px;line-height:0;color:var(--g);height:24px;display:block;}
+  .ab-quote blockquote{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:32px;line-height:1.35;color:var(--ink);max-width:900px;margin:0 auto;letter-spacing:-.3px;}
+  .ab-quote cite{display:block;font-family:'Archivo';font-style:normal;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft);margin-top:26px;}
+
+  /* team */
+  .ab-team{padding:72px 56px 24px;}
+  .team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:32px;}
+  .tm{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px 24px;transition:.18s;}
+  .tm:hover{border-color:var(--line-mid);}
+  .tm .av{width:64px;height:64px;border-radius:50%;background:var(--g-deep);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:26px;color:#fff;margin-bottom:16px;}
+  .tm .nm{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;color:var(--ink);}
+  .tm .rl{font-size:12.5px;color:var(--g);font-weight:600;letter-spacing:.3px;margin-top:4px;}
+  .tm .bio{font-size:13.5px;line-height:1.6;color:var(--ink-mid);margin-top:10px;padding-top:12px;border-top:1px solid var(--line);}
+
+  /* CTA band */
+  .ab-cta{margin:56px 56px 72px;background:var(--bar);border-radius:16px;padding:52px 56px;display:flex;align-items:center;gap:40px;flex-wrap:wrap;overflow:hidden;position:relative;}
+  .ab-cta::after{content:'';position:absolute;right:-80px;bottom:-120px;width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(255,200,9,.14),transparent 68%);}
+  .ab-cta .ct{flex:1;min-width:280px;position:relative;z-index:1;}
+  .ab-cta h3{font-family:'Playfair Display',serif;font-weight:900;font-size:38px;letter-spacing:-.8px;color:#fff;line-height:1.05;}
+  .ab-cta h3 .dot{color:var(--y);}
+  .ab-cta p{font-size:15.5px;line-height:1.6;color:#cfe0d3;margin-top:12px;max-width:52ch;}
+  .ab-cta .acts{display:flex;gap:14px;position:relative;z-index:1;flex-wrap:wrap;}
+  .ab-cta .btn{font-family:'Archivo';font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;border-radius:30px;padding:15px 30px;transition:.15s;}
+  .ab-cta .btn.primary{background:var(--y);color:var(--ink);}
+  .ab-cta .btn.primary:hover{filter:brightness(.94);}
+  .ab-cta .btn.ghost{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.28);}
+  .ab-cta .btn.ghost:hover{background:rgba(255,255,255,.2);}
+
+  /* footer */
+  .ui-ft{display:flex;align-items:center;gap:22px;padding:26px 56px;background:var(--bar);color:#fff;}
+  .ui-ft .fl{font-family:'Playfair Display',serif;font-weight:900;font-size:32px;line-height:1;letter-spacing:-.5px;color:#fff;}
+  .ui-ft .fl .dot{color:var(--y);}
+  .ui-ft .cp{font-size:12px;color:#bcc7b7;}
+  .ui-ft .fsp{flex:1;}
+  .ui-ft .fnav{display:flex;gap:22px;}
+  .ui-ft .fnav a{font-size:13px;color:#dfe7dd;transition:.15s;}
+  .ui-ft .fnav a:hover{color:var(--y);}
+
+  /* responsive */
+  @media (max-width:768px){
+    html,body{overflow-x:hidden;}
+    .page{box-shadow:none;}
+    .ui-top{flex-wrap:wrap;gap:6px 12px;padding:10px 16px;}
+    .ui-top .sp{display:none;}
+    .ui-top .nt{font-size:13px;order:3;width:100%;}
+    .ui-hd{flex-wrap:wrap;gap:12px;padding:16px 16px;}
+    .ui-logo{font-size:34px;flex:1;}
+    .ui-logo small{font-size:9.5px;margin-top:6px;}
+    .ui-hsp{display:none;}
+    .ui-search{order:3;width:100%;min-width:0;}
+    .ui-burger{order:2;}
+    .ab-hero{padding:40px 16px 84px;}
+    .ab-title{font-size:38px;letter-spacing:-1px;}
+    .ab-lede{font-size:18px;}
+    .ab-stats{margin:-48px 16px 0;grid-template-columns:1fr 1fr;}
+    .ab-stats .st{padding:22px 18px;}
+    .ab-stats .st:nth-child(2){border-right:0;}
+    .ab-stats .st:nth-child(1),.ab-stats .st:nth-child(2){border-bottom:1px solid var(--line);}
+    .ab-stats .sn{font-size:34px;}
+    .sec-intro{padding:48px 16px 4px;}
+    .sec-intro h2{font-size:30px;}
+    .ab-story{column-count:1;padding:28px 16px 4px;}
+    .ab-values{padding:24px 16px 4px;}
+    .val-grid{grid-template-columns:1fr 1fr;gap:16px;}
+    .ab-quote{padding:44px 16px;margin-top:48px;}
+    .ab-quote blockquote{font-size:24px;}
+    .ab-team{padding:48px 16px 16px;}
+    .team-grid{grid-template-columns:1fr 1fr;gap:16px;}
+    .ab-cta{margin:40px 16px 48px;padding:36px 24px;}
+    .ab-cta h3{font-size:28px;}
+    .ui-ft{flex-wrap:wrap;gap:12px 18px;padding:24px 16px;}
+    .ui-ft .fsp{display:none;}
+    .ui-ft .cp{width:100%;order:3;}
+    .ui-ft .fnav{width:100%;gap:18px;order:4;}
+  }
+</style>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#0E3D27"></rect>
+      <text x="600" y="420" text-anchor="middle" font-family="Georgia,'Playfair Display',serif" font-weight="900" font-size="150" fill="#FBF8F1">About</text>
+      <circle cx="742" cy="420" r="15" fill="#FFC809"></circle>
+      <text x="600" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" letter-spacing="7" fill="#8ea78f">THE SMART INVESTOR</text>
+    </svg>
+  </template>
+
+  <div class="page">
+
+    <!-- top strip -->
+    <div class="ui-top">
+      <span class="date" id="topDate">Monday, 15 June 2026</span>
+      <span class="sp"></span>
+      <span class="nt">Stay informed. <b>No noise.</b></span>
+      <button class="ui-sub-btn">Subscribe</button>
+    </div>
+
+    <!-- header -->
+    <div class="ui-hd">
+      <div class="ui-logo"><a href="TSI HM V4 - Standalone.html"><span style="color:var(--g)">T</span><span style="color:var(--y)">S</span><span style="color:var(--g)">I</span><span class="dot">.</span></a><small>The Smart Investor — est. 2003 · revived 2023</small></div>
+      <div class="ui-hsp"></div>
+      <div class="ui-search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8a938b" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        <input placeholder="Search The Smart Investor">
+      </div>
+      <div class="ui-burger" onclick="openMenu()"><i></i><i></i><i></i></div>
+    </div>
+
+    <!-- hero -->
+    <div class="ab-hero">
+      <div class="rule"></div>
+      <div class="ab-kick">About us</div>
+      <h1 class="ab-title">Independent business journalism<span class="dot">.</span></h1>
+      <p class="ab-lede">The Smart Investor cuts through the noise — clear, credible reporting on markets, policy, and the decisions that move money across the region.</p>
+    </div>
+
+    <!-- floating stats -->
+    <div class="ab-stats">
+      <div class="st"><div class="sn">2003</div><div class="sl">Founded · revived 2023</div></div>
+      <div class="st"><div class="sn">1.2M</div><div class="sl">Monthly readers</div></div>
+      <div class="st"><div class="sn">40+</div><div class="sl">Journalists &amp; analysts</div></div>
+      <div class="st"><div class="sn">6</div><div class="sl">Regional bureaus</div></div>
+    </div>
+
+    <!-- story -->
+    <div class="sec-intro">
+      <div class="eb">Our story</div>
+      <h2>Signal, not spin — for two decades and counting</h2>
+    </div>
+    <div class="ab-story">
+      <p class="lead">The Smart Investor began in 2003 as a modest print newsletter for a handful of local investors who wanted <b>signal, not spin</b>. Two decades on — and freshly revived in 2023 as a digital-first newsroom — that founding principle still guides everything we publish.</p>
+      <p>We cover the three things that determine outcomes for readers: <b>the nation</b> and the policy that shapes it, <b>the decisions</b> made in boardrooms and central banks, and <b>the wider region</b> whose markets are increasingly intertwined.</p>
+      <p>Our reporting is built on primary sources, careful analysis, and a refusal to chase hype. We write for readers who want to understand <b>why</b> markets move, not just that they did — from first-time investors to professionals managing institutional mandates.</p>
+      <p>Independence, for us, is a structure rather than a slogan: editorial operates separately from commercial partnerships, advertising is always labelled, and corrections are published openly. Trust is earned one accurate story at a time.</p>
+    </div>
+
+    <!-- values -->
+    <div class="ab-values">
+      <div class="val-grid">
+        <div class="val"><div class="vn">01</div><div class="vh">Accuracy first</div><div class="vt">Every figure is checked and every claim is sourced before it reaches you.</div></div>
+        <div class="val"><div class="vn">02</div><div class="vh">Reader over hype</div><div class="vt">We explain what matters and why — we never sensationalise.</div></div>
+        <div class="val"><div class="vn">03</div><div class="vh">Open corrections</div><div class="vt">When we get something wrong, we say so, clearly and promptly.</div></div>
+        <div class="val"><div class="vn">04</div><div class="vh">Independence</div><div class="vt">Editorial decisions are never for sale, to anyone, at any price.</div></div>
+      </div>
+    </div>
+
+    <!-- quote band -->
+    <div class="ab-quote">
+      <span class="qm">“</span>
+      <blockquote>We measure success not by clicks, but by the quality of the decisions our readers are able to make.</blockquote>
+      <cite>— The Smart Investor editorial charter</cite>
+    </div>
+
+    <!-- team -->
+    <div class="ab-team">
+      <div class="sec-intro" style="padding-top:0;">
+        <div class="eb">The newsroom</div>
+        <h2>The people behind the reporting</h2>
+      </div>
+      <div class="team-grid">
+        <div class="tm"><div class="av">N</div><div class="nm">Nurul Iman</div><div class="rl">Editor · Nation</div><div class="bio">Covers fiscal policy, budgets, and public finance.</div></div>
+        <div class="tm"><div class="av">C</div><div class="nm">Cheryl Tan</div><div class="rl">Editor · Decisions</div><div class="bio">Boardrooms, deals, and corporate strategy.</div></div>
+        <div class="tm"><div class="av">A</div><div class="nm">Arjun Pillai</div><div class="rl">Editor · Asia</div><div class="bio">Regional markets, currencies, and macro.</div></div>
+        <div class="tm"><div class="av">R</div><div class="nm">Rajiv Menon</div><div class="rl">Markets Correspondent</div><div class="bio">Equities, taxation, and long-term investing.</div></div>
+      </div>
+    </div>
+
+    <!-- CTA band -->
+    <div class="ab-cta">
+      <div class="ct">
+        <h3>Have a story or a question<span class="dot">?</span></h3>
+        <p>Story tips, partnership enquiries, or feedback for the newsroom — we read everything and reply within two business days.</p>
+      </div>
+      <div class="acts">
+        <a class="btn primary" href="TSI Contact.html">Contact the team</a>
+        <a class="btn ghost" href="TSI HM V4 - Standalone.html">Back to home</a>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <div class="ui-ft">
+      <div class="fl">T<span style="color:var(--y)">S</span>I<span class="dot">.</span></div>
+      <span class="cp">© 2026 The Smart Investor</span>
+      <div class="fsp"></div>
+      <div class="fnav"><a href="TSI HM V4 - Standalone.html?disc=1">Disclaimer</a><a href="TSI About.html">About</a><a href="TSI Contact.html">Contact</a></div>
+    </div>
+
+  </div>
+
+  <style>
+  .nav-menu{position:fixed;inset:0;z-index:10000;background:var(--bar);color:#fff;display:none;flex-direction:column;padding:26px 56px 40px;overflow-y:auto;}
+  .nav-menu.open{display:flex;}
+  .nav-menu .nm-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.15);}
+  .nav-menu .nm-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;letter-spacing:-1px;color:#fff;}
+  .nav-menu .nm-logo .dot{color:var(--y);}
+  .nav-menu .nm-close{font-family:'Archivo';font-size:13px;font-weight:600;letter-spacing:.5px;color:#fff;background:rgba(255,255,255,.12);border:0;border-radius:30px;padding:10px 20px;cursor:pointer;transition:.15s;}
+  .nav-menu .nm-close:hover{background:rgba(255,255,255,.22);}
+  .nav-menu .nm-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;padding:40px 0;}
+  .nav-menu .nm-h{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--y);margin-bottom:18px;}
+  .nav-menu .nm-sections a{display:block;font-family:'Playfair Display',serif;font-weight:700;font-size:32px;letter-spacing:-.5px;color:#fff;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);transition:.15s;}
+  .nav-menu .nm-sections a:hover{color:var(--y);}
+  .nav-menu .nm-sections a .ct{display:block;font-family:'Archivo';font-size:12px;font-weight:500;letter-spacing:.5px;color:#9fb4a6;margin-top:4px;}
+  .nav-menu .nm-pages a{display:block;font-family:'Archivo';font-size:16px;color:#dfe7dd;padding:10px 0;transition:.15s;}
+  .nav-menu .nm-pages a:hover{color:var(--y);}
+  .nav-menu .nm-foot{margin-top:auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);}
+  .nav-menu .nm-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+  .nav-menu .nm-tags a{font-size:12.5px;color:#dfe7dd;border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:6px 15px;transition:.15s;}
+  .nav-menu .nm-tags a:hover{background:var(--y);color:var(--ink);border-color:var(--y);}
+  @media (max-width:768px){
+    .nav-menu{padding:22px 18px 30px;}
+    .nav-menu .nm-grid{grid-template-columns:1fr;gap:28px;padding:24px 0 8px;}
+    .nav-menu .nm-sections a{font-size:24px;}
+    .nav-menu .nm-logo{font-size:30px;}
+  }
+  </style>
+  <div class="nav-menu" id="mainMenu">
+    <div class="nm-top">
+      <div class="nm-logo">T<span style="color:var(--y)">S</span>I<span class="dot">.</span></div>
+      <button class="nm-close" onclick="closeMenu()">Close ✕</button>
+    </div>
+    <div class="nm-grid">
+      <div class="nm-sections">
+        <div class="nm-h">Sections</div>
+        <a href="TSI Category.html?cat=nation">Nation<span class="ct">Policy · Economy</span></a>
+        <a href="TSI Category.html?cat=decisions">Decisions<span class="ct">Boardrooms · Power</span></a>
+        <a href="TSI Category.html?cat=asia">What's News Asia<span class="ct">ASEAN · China</span></a>
+      </div>
+      <div class="nm-company">
+        <div class="nm-h">The Company</div>
+        <div class="nm-pages">
+          <a href="TSI About.html">About Us</a>
+          <a href="TSI Contact.html">Contact Us</a>
+          <a href="TSI HM V4 - Standalone.html?disc=1">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+    <div class="nm-foot">
+      <div class="nm-h">Trending topics</div>
+      <div class="nm-tags">
+        <a href="#">#business</a><a href="#">#markets</a><a href="#">#politics</a><a href="#">#economy</a><a href="#">#budget2026</a><a href="#">#property</a><a href="#">#klse</a><a href="#">#esg</a><a href="#">#tech</a><a href="#">#asean</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('topDate').textContent =
+      new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    function openMenu(){document.getElementById('mainMenu').classList.add('open');document.body.style.overflow='hidden';}
+    function closeMenu(){document.getElementById('mainMenu').classList.remove('open');document.body.style.overflow='';}
+  </script>
+</body>
+</html>

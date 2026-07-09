@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Author — The Smart Investor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --g:#029547;--g-deep:#0E5A30;--y:#FFC809;--ink:#1C2620;--ink-mid:#55605A;
+    --ink-soft:#8c8b7e;--line:#E7E0D1;--line-mid:#D6CCB7;--paper:#FBF8F1;--wash:#F2EDE0;--g-wash:#ECF2EA;
+    --bar:#0E3D27;--page-w:1440px;
+  }
+  html,body{background:var(--wash);}
+  body{font-family:'Archivo',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;color:inherit;}
+  .page{width:100%;max-width:var(--page-w);margin:0 auto;background:var(--paper);min-height:100vh;box-shadow:0 0 60px rgba(0,0,0,.05);}
+
+  /* top strip */
+  .ui-top{display:flex;align-items:center;gap:20px;padding:11px 56px;background:var(--bar);color:#fff;}
+  .ui-top .date{font-size:12px;letter-spacing:.4px;color:#bcc7b7;}
+  .ui-top .sp{flex:1;}
+  .ui-top .nt{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#fff;}
+  .ui-sub-btn{font-family:'Archivo';font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--y);color:var(--ink);border:0;border-radius:4px;padding:9px 20px;cursor:pointer;transition:.15s;}
+  .ui-sub-btn:hover{filter:brightness(.94);}
+
+  /* header */
+  .ui-hd{display:flex;align-items:center;gap:26px;padding:26px 56px;}
+  .ui-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:58px;line-height:.9;letter-spacing:-1px;color:var(--ink);}
+  .ui-logo .dot{color:var(--y);}
+  .ui-logo small{display:block;font-family:'Archivo';font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:9px;}
+  .ui-hsp{flex:1;}
+  .ui-search{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line-mid);border-radius:30px;padding:9px 18px;min-width:260px;}
+  .ui-search input{border:0;outline:0;background:transparent;font-family:'Archivo';font-size:13.5px;color:var(--ink);width:100%;}
+  .ui-search input::placeholder{color:var(--ink-soft);}
+  .ui-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .ui-burger i{width:26px;height:2px;background:var(--ink);display:block;border-radius:2px;}
+
+  /* author profile hero */
+  .au-hero{border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .au-band{background:var(--g-wash);padding:40px 56px 30px;}
+  .au-row{display:flex;gap:28px;align-items:center;}
+  .au-av{width:112px;height:112px;border-radius:50%;background:var(--paper);border:3px solid var(--g);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:48px;color:var(--g-deep);flex:none;}
+  .au-id{flex:1;min-width:0;}
+  .au-kick{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--g);margin-bottom:9px;}
+  .au-name{font-family:'Playfair Display',serif;font-weight:900;font-size:50px;line-height:1;letter-spacing:-1.4px;color:var(--ink);}
+  .au-role{display:inline-block;margin-top:13px;font-size:11.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;color:var(--g-deep);background:var(--paper);border:1px solid var(--line-mid);border-radius:30px;padding:6px 15px;}
+  .au-social{display:flex;gap:10px;flex:none;align-self:flex-start;}
+  .au-social a{width:38px;height:38px;border:1.5px solid var(--line-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-mid);background:var(--paper);transition:.15s;}
+  .au-social a:hover{background:var(--g-deep);border-color:var(--g-deep);color:#fff;}
+  .au-lower{display:flex;gap:44px;align-items:flex-end;justify-content:space-between;padding:22px 56px 26px;flex-wrap:wrap;}
+  .au-bio{font-size:15.5px;line-height:1.7;color:var(--ink-mid);max-width:600px;}
+  .au-stats{display:flex;flex:none;}
+  .au-stats .sc{padding:0 24px;border-left:1px solid var(--line-mid);text-align:center;}
+  .au-stats .sc:first-child{border-left:0;padding-left:0;}
+  .au-stats .sn{font-family:'Playfair Display',serif;font-weight:900;font-size:30px;color:var(--g-deep);line-height:1;}
+  .au-stats .sl{font-size:10.5px;color:var(--ink-soft);letter-spacing:.6px;margin-top:7px;text-transform:uppercase;}
+
+  /* leaderboard ad */
+  .ui-lb-wrap{padding:24px 56px;}
+  .ui-lb{border:2px solid var(--ink);padding:8px;position:relative;background:var(--paper);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .ui-lb img{display:block;width:100%;height:auto;}
+  .ad-label{position:absolute;top:8px;right:8px;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8f8c82;background:rgba(251,248,241,.85);padding:3px 7px;border-radius:3px;}
+
+  /* two-column shell */
+  .au-shell{display:grid;grid-template-columns:minmax(0,1fr) 328px;gap:56px;padding:12px 56px 72px;align-items:start;}
+  .au-main{min-width:0;}
+  .au-side{position:sticky;top:24px;display:flex;flex-direction:column;gap:26px;}
+  .list-kick{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-soft);padding-bottom:14px;border-bottom:2px solid var(--line);margin-bottom:0;}
+
+  /* article cards */
+  .ui-art{display:flex;gap:22px;padding:24px 0;border-bottom:1px solid var(--line);cursor:pointer;}
+  .ui-art .thumb{width:150px;height:104px;flex:none;border-radius:6px;overflow:hidden;border:1px solid var(--line);background:var(--g-wash);}
+  .ui-art .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .ui-art .txt{flex:1;}
+  .ui-art .cat{font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--g);}
+  .ui-art h3{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;line-height:1.25;margin:6px 0 8px;color:var(--ink);transition:color .15s;}
+  .ui-art:hover h3{color:var(--g-deep);}
+  .ui-art .amt{font-size:12px;color:var(--ink-soft);}
+  .ui-art .amt b{color:var(--ink-mid);font-weight:600;}
+
+  /* sidebar */
+  .side-box{border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .side-h{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-soft);padding:15px 20px;border-bottom:1px solid var(--line);background:var(--wash);}
+  .stat-row{display:flex;padding:0;}
+  .stat-row .sc{flex:1;padding:18px 20px;text-align:center;border-right:1px solid var(--line);}
+  .stat-row .sc:last-child{border-right:0;}
+  .stat-row .sn{font-family:'Playfair Display',serif;font-weight:900;font-size:26px;color:var(--g-deep);line-height:1;}
+  .stat-row .sl{font-size:11px;color:var(--ink-soft);letter-spacing:.4px;margin-top:6px;}
+  .ad-rail .rlbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-bottom:8px;}
+  .ad-rail .rbox{border:1px solid var(--line-mid);background:var(--wash);overflow:hidden;display:flex;justify-content:center;}
+  .ad-rail .rbox img{display:block;width:125px;height:600px;max-width:100%;}
+
+  /* footer */
+  .ui-ft{display:flex;align-items:center;gap:22px;padding:26px 56px;background:var(--bar);color:#fff;}
+  .ui-ft .fl{font-family:'Playfair Display',serif;font-weight:900;font-size:32px;line-height:1;letter-spacing:-.5px;color:#fff;}
+  .ui-ft .fl .dot{color:var(--y);}
+  .ui-ft .cp{font-size:12px;color:#bcc7b7;}
+  .ui-ft .fsp{flex:1;}
+  .ui-ft .fnav{display:flex;gap:22px;}
+  .ui-ft .fnav a{font-size:13px;color:#dfe7dd;transition:.15s;}
+  .ui-ft .fnav a:hover{color:var(--y);}
+
+  /* responsive */
+  @media (max-width:768px){
+    html,body{overflow-x:hidden;}
+    .page{box-shadow:none;}
+    .ui-top{flex-wrap:wrap;gap:6px 12px;padding:10px 16px;}
+    .ui-top .sp{display:none;}
+    .ui-top .nt{font-size:13px;order:3;width:100%;}
+    .ui-hd{flex-wrap:wrap;gap:12px;padding:16px 16px;}
+    .ui-logo{font-size:34px;flex:1;}
+    .ui-logo small{font-size:9.5px;margin-top:6px;}
+    .ui-hsp{display:none;}
+    .ui-search{order:3;width:100%;min-width:0;}
+    .ui-burger{order:2;}
+    .au-band{padding:28px 16px 22px;}
+    .au-row{flex-direction:column;text-align:center;gap:16px;align-items:center;}
+    .au-av{width:88px;height:88px;font-size:38px;}
+    .au-social{align-self:center;}
+    .au-name{font-size:38px;}
+    .au-lower{flex-direction:column;gap:22px;padding:20px 16px 24px;align-items:flex-start;}
+    .au-stats{width:100%;}
+    .ui-lb-wrap{padding:14px 16px;}
+    .au-shell{grid-template-columns:1fr;gap:36px;padding:16px 16px 24px;}
+    .au-side{position:static;order:2;}
+    .ui-art .thumb{width:104px;height:76px;}
+    .ui-art h3{font-size:18px;}
+    .ui-ft{flex-wrap:wrap;gap:12px 18px;padding:24px 16px;}
+    .ui-ft .fsp{display:none;}
+    .ui-ft .cp{width:100%;order:3;}
+    .ui-ft .fnav{width:100%;gap:18px;order:4;}
+  }
+</style>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#0E3D27"></rect>
+      <circle cx="600" cy="360" r="90" fill="#ECF2EA"></circle>
+      <text x="600" y="392" text-anchor="middle" font-family="Georgia,'Playfair Display',serif" font-weight="900" font-size="90" fill="#0E5A30">A</text>
+      <text x="600" y="520" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" letter-spacing="7" fill="#8ea78f">THE SMART INVESTOR</text>
+    </svg>
+  </template>
+
+  <div class="page">
+
+    <div class="ui-top">
+      <span class="date" id="topDate">Monday, 15 June 2026</span>
+      <span class="sp"></span>
+      <span class="nt">Stay informed. <b>No noise.</b></span>
+      <button class="ui-sub-btn">Subscribe</button>
+    </div>
+
+    <div class="ui-hd">
+      <div class="ui-logo"><a href="TSI HM V4 - Standalone.html"><span style="color:var(--g)">T</span><span style="color:var(--y)">S</span><span style="color:var(--g)">I</span><span class="dot">.</span></a><small>The Smart Investor — est. 2003 · revived 2023</small></div>
+      <div class="ui-hsp"></div>
+      <div class="ui-search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8a938b" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        <input placeholder="Search The Smart Investor">
+      </div>
+      <div class="ui-burger" onclick="openMenu()"><i></i><i></i><i></i></div>
+    </div>
+
+    <!-- author profile -->
+    <div class="au-hero">
+      <div class="au-band">
+        <div class="au-row">
+          <div class="au-av" id="auAv">A</div>
+          <div class="au-id">
+            <div class="au-kick" id="auKick">Contributor</div>
+            <h1 class="au-name" id="auName">Author</h1>
+            <span class="au-role" id="auRole"></span>
+          </div>
+          <div class="au-social">
+            <a href="#" aria-label="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.5 8.6L23.3 22h-6.8l-5.3-7-6.1 7H2l8-9.2L1.2 2H8l4.8 6.4L18.9 2zm-2.4 18h1.9L7.6 4H5.6l10.9 16z"/></svg></a>
+            <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.4 8.65 22 11 22 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21h-4z"/></svg></a>
+            <a href="TSI Contact.html" aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="au-lower">
+        <p class="au-bio" id="auBio"></p>
+        <div class="au-stats">
+          <div class="sc"><div class="sn" id="stArticles">—</div><div class="sl">Articles</div></div>
+          <div class="sc"><div class="sn" id="stYears">20</div><div class="sl">Years at TSI</div></div>
+          <div class="sc"><div class="sn" id="stBeat">—</div><div class="sl">Beat</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- leaderboard ad -->
+    <div class="ui-lb-wrap">
+      <div class="ui-lb"><span class="ad-label">Advertisement</span><img src="assets/ad-leaderboard.png" alt="Advertisement"></div>
+    </div>
+
+    <!-- two-column -->
+    <div class="au-shell">
+      <div class="au-main">
+        <div class="list-kick" id="listKick">Latest by this author</div>
+        <div id="listSlot"></div>
+      </div>
+      <aside class="au-side">
+        <div class="ad-rail">
+          <div class="rlbl">Advertisement</div>
+          <div class="rbox"><img src="assets/ad-skyscraper.jpg" alt="Advertisement"></div>
+        </div>
+      </aside>
+    </div>
+
+    <div class="ui-ft">
+      <div class="fl">T<span style="color:var(--y)">S</span>I<span class="dot">.</span></div>
+      <span class="cp">© 2026 The Smart Investor</span>
+      <div class="fsp"></div>
+      <div class="fnav"><a href="TSI HM V4 - Standalone.html?disc=1">Disclaimer</a><a href="TSI About.html">About</a><a href="TSI Contact.html">Contact</a></div>
+    </div>
+
+  </div>
+
+  <style>
+  .nav-menu{position:fixed;inset:0;z-index:10000;background:var(--bar);color:#fff;display:none;flex-direction:column;padding:26px 56px 40px;overflow-y:auto;}
+  .nav-menu.open{display:flex;}
+  .nav-menu .nm-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.15);}
+  .nav-menu .nm-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;letter-spacing:-1px;color:#fff;}
+  .nav-menu .nm-logo .dot{color:var(--y);}
+  .nav-menu .nm-close{font-family:'Archivo';font-size:13px;font-weight:600;letter-spacing:.5px;color:#fff;background:rgba(255,255,255,.12);border:0;border-radius:30px;padding:10px 20px;cursor:pointer;transition:.15s;}
+  .nav-menu .nm-close:hover{background:rgba(255,255,255,.22);}
+  .nav-menu .nm-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;padding:40px 0;}
+  .nav-menu .nm-h{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--y);margin-bottom:18px;}
+  .nav-menu .nm-sections a{display:block;font-family:'Playfair Display',serif;font-weight:700;font-size:32px;letter-spacing:-.5px;color:#fff;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);transition:.15s;}
+  .nav-menu .nm-sections a:hover{color:var(--y);}
+  .nav-menu .nm-sections a .ct{display:block;font-family:'Archivo';font-size:12px;font-weight:500;letter-spacing:.5px;color:#9fb4a6;margin-top:4px;}
+  .nav-menu .nm-pages a{display:block;font-family:'Archivo';font-size:16px;color:#dfe7dd;padding:10px 0;transition:.15s;}
+  .nav-menu .nm-pages a:hover{color:var(--y);}
+  .nav-menu .nm-foot{margin-top:auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);}
+  .nav-menu .nm-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+  .nav-menu .nm-tags a{font-size:12.5px;color:#dfe7dd;border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:6px 15px;transition:.15s;}
+  .nav-menu .nm-tags a:hover{background:var(--y);color:var(--ink);border-color:var(--y);}
+  @media (max-width:768px){
+    .nav-menu{padding:22px 18px 30px;}
+    .nav-menu .nm-grid{grid-template-columns:1fr;gap:28px;padding:24px 0 8px;}
+    .nav-menu .nm-sections a{font-size:24px;}
+    .nav-menu .nm-logo{font-size:30px;}
+  }
+  </style>
+  <div class="nav-menu" id="mainMenu">
+    <div class="nm-top">
+      <div class="nm-logo">T<span style="color:var(--y)">S</span>I<span class="dot">.</span></div>
+      <button class="nm-close" onclick="closeMenu()">Close ✕</button>
+    </div>
+    <div class="nm-grid">
+      <div class="nm-sections">
+        <div class="nm-h">Sections</div>
+        <a href="TSI Category.html?cat=nation">Nation<span class="ct">Policy · Economy</span></a>
+        <a href="TSI Category.html?cat=decisions">Decisions<span class="ct">Boardrooms · Power</span></a>
+        <a href="TSI Category.html?cat=asia">What's News Asia<span class="ct">ASEAN · China</span></a>
+      </div>
+      <div class="nm-company">
+        <div class="nm-h">The Company</div>
+        <div class="nm-pages">
+          <a href="TSI About.html">About Us</a>
+          <a href="TSI Contact.html">Contact Us</a>
+          <a href="TSI HM V4 - Standalone.html?disc=1">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+    <div class="nm-foot">
+      <div class="nm-h">Trending topics</div>
+      <div class="nm-tags">
+        <a href="#">#business</a><a href="#">#markets</a><a href="#">#politics</a><a href="#">#economy</a><a href="#">#budget2026</a><a href="#">#property</a><a href="#">#klse</a><a href="#">#esg</a><a href="#">#tech</a><a href="#">#asean</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('topDate').textContent =
+      new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+    function openMenu(){document.getElementById('mainMenu').classList.add('open');document.body.style.overflow='hidden';}
+    function closeMenu(){document.getElementById('mainMenu').classList.remove('open');document.body.style.overflow='';}
+
+    const IMG = ['assets/art-1.jpg','assets/art-2.jpg','assets/art-3.jpg','assets/art-4.jpg'];
+    const AUTHORS = {
+      'Nurul Iman': { role:'Editor · Nation', beat:'Policy', years:12, catkey:'nation',
+        bio:'Nurul Iman leads TSI\u2019s coverage of fiscal policy, national budgets and public finance, with two decades reporting on the machinery of government.',
+        articles:[
+          {cat:'Fiscal Policy', headline:'Parliament passes landmark fiscal reform after marathon session', time:'2 hours ago · 6 min read', img:IMG[0]},
+          {cat:'Governance', headline:'Sovereign fund posts steadiest annual return since inception', time:'Yesterday · 4 min read', img:IMG[3]},
+          {cat:'Public Finance', headline:'Debt-to-GDP ratio falls to its lowest level in six years', time:'5 days ago · 4 min read', img:IMG[2]},
+          {cat:'Regulation', headline:'Watchdog proposes tougher rules on related-party deals', time:'5 days ago · 5 min read', img:IMG[1]},
+          {cat:'Budget 2026', headline:'Treasury lifts growth forecast to 4.2% on resilient demand', time:'1 week ago · 3 min read', img:IMG[0]},
+          {cat:'Housing', headline:'New cooling measures target foreign buyers in prime districts', time:'1 week ago · 5 min read', img:IMG[2]}
+        ]},
+      'Cheryl Tan': { role:'Editor · Decisions', beat:'Corporate', years:9, catkey:'decisions',
+        bio:'Cheryl Tan covers boardrooms, deals and corporate strategy, tracking the decisions that reshape the region\u2019s largest companies.',
+        articles:[
+          {cat:'Leadership', headline:'Founder steps back as conglomerate names first outside chief executive', time:'3 hours ago · 5 min read', img:IMG[2]},
+          {cat:'Strategy', headline:'Airline bets on premium cabins to defend margins', time:'3 days ago · 5 min read', img:IMG[1]},
+          {cat:'Deals', headline:'Property developer offloads mall portfolio to reset balance sheet', time:'Yesterday · 4 min read', img:IMG[3]},
+          {cat:'Restructuring', headline:'Conglomerate splits its energy and property divisions', time:'5 days ago · 5 min read', img:IMG[0]},
+          {cat:'Earnings', headline:'Retailer lifts full-year outlook on strong festive sales', time:'2 days ago · 3 min read', img:IMG[2]},
+          {cat:'Trade', headline:'Export orders rebound as electronics demand steadies', time:'1 week ago · 3 min read', img:IMG[1]}
+        ]},
+      'Arjun Pillai': { role:"Editor · What's News Asia", beat:'Markets', years:11, catkey:'asia',
+        bio:'Arjun Pillai reports on regional markets, currencies and macro trends connecting Singapore, Kuala Lumpur, Jakarta, Bangkok and beyond.',
+        articles:[
+          {cat:'Regional Markets', headline:'Southeast Asian equities rally as foreign inflows return', time:'1 hour ago · 5 min read', img:IMG[1]},
+          {cat:'Energy', headline:'Indonesia accelerates nickel downstreaming with fresh incentives', time:'Yesterday · 6 min read', img:IMG[0]},
+          {cat:'Property', headline:'Bangkok condo market cools as supply overtakes demand', time:'Yesterday · 4 min read', img:IMG[1]},
+          {cat:'Banking', headline:'Cross-border payment link goes live across four markets', time:'6 days ago · 3 min read', img:IMG[2]},
+          {cat:'Governance', headline:'Investors back an overhaul of the executive-pay framework', time:'6 days ago · 4 min read', img:IMG[3]},
+          {cat:'Infrastructure', headline:'Port expansion enters final phase ahead of schedule', time:'1 week ago · 3 min read', img:IMG[0]}
+        ]},
+      'Rajiv Menon': { role:'Markets Correspondent', beat:'Equities', years:7, catkey:'nation',
+        bio:'Rajiv Menon writes on equities, taxation and long-term investing, translating market moves into what they mean for everyday portfolios.',
+        articles:[
+          {cat:'Budget 2026', headline:'What the new capital-gains bands mean for long-term investors', time:'Today · 4 min read', img:IMG[1]},
+          {cat:'Taxation', headline:'SST rebroadening: the five sectors that will feel it first', time:'2 days ago · 6 min read', img:IMG[1]},
+          {cat:'Labour', headline:'Wage growth outpaces inflation for a second straight quarter', time:'3 days ago · 4 min read', img:IMG[2]},
+          {cat:'Leadership', headline:'Fintech names veteran banker as new chief risk officer', time:'4 days ago · 3 min read', img:IMG[0]},
+          {cat:'Tech', headline:'Regional e-commerce margins turn positive at scale', time:'5 days ago · 5 min read', img:IMG[0]},
+          {cat:'M&A', headline:'Two logistics giants confirm merger talks valued near $8 billion', time:'1 week ago · 4 min read', img:IMG[3]}
+        ]},
+      'Faridah Ahmad': { role:'Senior Correspondent', beat:'Banking', years:14, catkey:'nation',
+        bio:'Faridah Ahmad covers central banking and monetary policy, with a focus on interest rates, inflation and financial stability.',
+        articles:[
+          {cat:'Monetary Policy', headline:'Bank Negara holds key rate at 3.00% as inflation cools through Q2', time:'2 hours ago · 4 min read', img:IMG[0]},
+          {cat:'Currencies', headline:'Ringgit and rupiah firm as rate-cut bets build across the region', time:'Today · 4 min read', img:IMG[2]},
+          {cat:'Banking', headline:'Bank pivots to fee income as the rate cycle turns', time:'Today · 3 min read', img:IMG[0]},
+          {cat:'Macro', headline:'Philippines holds rates as growth stays resilient', time:'4 days ago · 3 min read', img:IMG[2]},
+          {cat:'Regulation', headline:'Central bank tightens disclosure rules for listed state entities', time:'Yesterday · 5 min read', img:IMG[3]},
+          {cat:'Public Finance', headline:'Small-business relief package clears committee stage', time:'1 week ago · 3 min read', img:IMG[1]}
+        ]}
+    };
+
+    function artUrl(a, who, catkey){
+      var p = new URLSearchParams();
+      p.set('title', a.headline);
+      p.set('cat', a.cat);
+      p.set('catkey', catkey);
+      p.set('by', who);
+      p.set('time', a.time);
+      p.set('img', a.img);
+      return 'TSI Article.html?' + p.toString();
+    }
+
+    (function(){
+      var name = new URLSearchParams(location.search).get('name');
+      if(!name || !AUTHORS[name]) name = 'Nurul Iman';
+      var a = AUTHORS[name];
+      document.title = name + ' — The Smart Investor';
+      document.getElementById('auAv').textContent = name.trim().charAt(0).toUpperCase();
+      document.getElementById('auName').textContent = name;
+      document.getElementById('auKick').textContent = a.role.split('·')[0].trim();
+      document.getElementById('auRole').textContent = a.role;
+      document.getElementById('auBio').textContent = a.bio;
+      document.getElementById('listKick').textContent = 'Latest by ' + name;
+      document.getElementById('stArticles').textContent = a.articles.length;
+      document.getElementById('stYears').textContent = a.years;
+      document.getElementById('stBeat').textContent = a.beat;
+
+      document.getElementById('listSlot').innerHTML = a.articles.map(function(it){
+        return '<a class="ui-art" href="'+artUrl(it, name, a.catkey)+'">'+
+          '<div class="thumb"><img src="'+it.img+'" alt=""></div>'+
+          '<div class="txt">'+
+            '<div class="cat">'+it.cat+'</div>'+
+            '<h3>'+it.headline+'</h3>'+
+            '<div class="amt"><b>'+name+'</b> · '+it.time+'</div>'+
+          '</div>'+
+        '</a>';
+      }).join('');
+    })();
+  </script>
+</body>
+</html>

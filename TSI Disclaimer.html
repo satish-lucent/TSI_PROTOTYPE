@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Disclaimer — The Smart Investor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --g:#029547;--g-deep:#0E5A30;--y:#FFC809;--ink:#1C2620;--ink-mid:#55605A;
+    --ink-soft:#8c8b7e;--line:#E7E0D1;--line-mid:#D6CCB7;--paper:#FBF8F1;--wash:#F2EDE0;--g-wash:#ECF2EA;
+    --bar:#0E3D27;--page-w:1440px;
+  }
+  html,body{background:var(--wash);}
+  body{font-family:'Archivo',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;color:inherit;}
+  .page{width:100%;max-width:var(--page-w);margin:0 auto;background:var(--paper);min-height:100vh;box-shadow:0 0 60px rgba(0,0,0,.05);}
+
+  /* ---------- top strip ---------- */
+  .ui-top{display:flex;align-items:center;gap:20px;padding:11px 56px;background:var(--bar);color:#fff;}
+  .ui-top .date{font-size:12px;letter-spacing:.4px;color:#bcc7b7;}
+  .ui-top .sp{flex:1;}
+  .ui-top .nt{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#fff;}
+  .ui-sub-btn{font-family:'Archivo';font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--y);color:var(--ink);border:0;border-radius:4px;padding:9px 20px;cursor:pointer;transition:.15s;}
+  .ui-sub-btn:hover{filter:brightness(.94);}
+
+  /* ---------- header ---------- */
+  .ui-hd{display:flex;align-items:center;gap:26px;padding:26px 56px;}
+  .ui-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:58px;line-height:.9;letter-spacing:-1px;color:var(--ink);}
+  .ui-logo a{display:inline-block;}
+  .ui-logo .dot{color:var(--y);}
+  .ui-logo small{display:block;font-family:'Archivo';font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:9px;}
+  .ui-hsp{flex:1;}
+  .ui-search{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line-mid);border-radius:30px;padding:9px 18px;min-width:260px;}
+  .ui-search input{border:0;outline:0;background:transparent;font-family:'Archivo';font-size:14px;color:var(--ink);width:100%;}
+  .ui-search input::placeholder{color:var(--ink-soft);}
+  .ui-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .ui-burger i{width:26px;height:2px;background:var(--ink);display:block;border-radius:2px;}
+
+  /* ---------- leaderboard ad ---------- */
+  .ui-lb-wrap{padding:24px 56px;}
+  .ui-lb{border:2px solid var(--ink);padding:8px;position:relative;background:var(--paper);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .ui-lb img{display:block;width:100%;height:auto;}
+  .ad-label{position:absolute;top:8px;right:8px;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8f8c82;background:rgba(251,248,241,.85);padding:3px 7px;border-radius:3px;}
+
+  /* ---------- hero ---------- */
+  .doc-hero{padding:44px 0 34px;border-bottom:1px solid var(--line);margin-bottom:40px;}
+  .doc-kick{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--ink-soft);padding-bottom:14px;border-bottom:2px solid var(--line);margin-bottom:24px;display:inline-block;}
+  .doc-title{font-family:'Playfair Display',serif;font-weight:900;font-size:72px;line-height:.98;letter-spacing:-2px;color:var(--ink);}
+  .doc-title .dot{color:var(--y);}
+  .doc-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:20px;color:var(--ink-mid);margin-top:18px;max-width:640px;line-height:1.4;}
+  .doc-meta{display:flex;gap:24px;align-items:center;margin-top:26px;flex-wrap:wrap;}
+  .doc-meta .m{font-size:12px;letter-spacing:.4px;color:var(--ink-soft);}
+  .doc-meta .m b{color:var(--ink);font-weight:700;}
+  .doc-meta .dv{width:1px;height:14px;background:var(--line-mid);}
+
+  /* ---------- 3-column shell with ad rails ---------- */
+  .doc-shell{display:grid;grid-template-columns:160px minmax(0,1fr) 160px;gap:44px;padding:8px 56px 72px;align-items:start;}
+  .ad-rail{position:sticky;top:24px;}
+  .ad-rail .ad-box{border:1px solid var(--line-mid);background:var(--wash);position:relative;overflow:hidden;}
+  .ad-rail .ad-box img{display:block;width:100%;height:auto;}
+  .ad-rail .rail-lbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-bottom:8px;}
+
+  .doc-main{max-width:100%;}
+  .doc-intro{font-size:18px;line-height:1.7;color:var(--ink);border-left:3px solid var(--g);background:var(--g-wash);padding:22px 26px;border-radius:0 6px 6px 0;margin-bottom:44px;}
+  .doc-intro b{font-weight:700;}
+  .sec{padding:34px 0;border-top:1px solid var(--line);}
+  .sec:first-of-type{border-top:0;padding-top:0;}
+  .sec h2{font-family:'Playfair Display',serif;font-weight:700;font-size:27px;letter-spacing:-.4px;color:var(--ink);display:flex;align-items:baseline;gap:15px;margin-bottom:16px;}
+  .sec h2 .num{font-family:'Archivo';font-size:13px;font-weight:700;color:var(--g);background:var(--g-wash);border-radius:5px;padding:5px 9px;letter-spacing:.5px;transform:translateY(-3px);}
+  .sec p{font-size:15.5px;line-height:1.75;color:var(--ink-mid);margin-bottom:15px;}
+  .sec p:last-child{margin-bottom:0;}
+  .sec p b{color:var(--ink);font-weight:600;}
+  .sec ul{margin:4px 0 15px;padding-left:0;list-style:none;}
+  .sec li{font-size:15.5px;line-height:1.7;color:var(--ink-mid);padding-left:26px;position:relative;margin-bottom:10px;}
+  .sec li::before{content:'';position:absolute;left:4px;top:11px;width:6px;height:6px;background:var(--g);border-radius:50%;}
+  .sec a.inl{color:var(--g-deep);border-bottom:1px solid var(--line-mid);}
+  .sec a.inl:hover{border-color:var(--g-deep);}
+
+  .doc-note{margin-top:44px;background:var(--bar);color:#fff;border-radius:8px;padding:34px 36px;}
+  .doc-note .nk{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--y);margin-bottom:12px;}
+  .doc-note p{font-size:15px;line-height:1.7;color:#dfe7dd;}
+  .doc-note p b{color:#fff;}
+
+  /* ---------- footer ---------- */
+  .ui-ft{display:flex;align-items:center;gap:22px;padding:26px 56px;background:var(--bar);color:#fff;}
+  .ui-ft .fl{font-family:'Playfair Display',serif;font-weight:900;font-size:32px;line-height:1;letter-spacing:-.5px;color:#fff;}
+  .ui-ft .fl .dot{color:var(--y);}
+  .ui-ft .cp{font-size:12px;color:#bcc7b7;}
+  .ui-ft .fsp{flex:1;}
+  .ui-ft .fnav{display:flex;gap:22px;}
+  .ui-ft .fnav a{font-size:13px;color:#dfe7dd;transition:.15s;}
+  .ui-ft .fnav a:hover{color:var(--y);}
+  .ui-ft .fnav a.on{color:var(--y);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:768px){
+    html,body{overflow-x:hidden;}
+    .page{box-shadow:none;}
+    .ui-top{flex-wrap:wrap;gap:6px 12px;padding:10px 16px;}
+    .ui-top .sp{display:none;}
+    .ui-top .nt{font-size:13px;order:3;width:100%;}
+    .ui-hd{flex-wrap:wrap;gap:12px;padding:16px 16px;}
+    .ui-logo{font-size:34px;flex:1;}
+    .ui-logo small{font-size:9.5px;margin-top:6px;}
+    .ui-hsp{display:none;}
+    .ui-search{order:3;width:100%;min-width:0;}
+    .ui-burger{order:2;}
+    .ui-lb-wrap{padding:14px 16px;}
+    .doc-hero{padding:28px 0 22px;margin-bottom:26px;}
+    .doc-title{font-size:44px;letter-spacing:-1px;}
+    .doc-sub{font-size:17px;}
+    .doc-shell{grid-template-columns:1fr;gap:32px;padding:16px 16px 48px;}
+    .ad-rail{position:static;display:flex;flex-direction:column;align-items:center;order:2;}
+    .ad-rail.left{order:0;}
+    .doc-main{max-width:100%;order:1;}
+    .ui-ft{flex-wrap:wrap;gap:12px 18px;padding:24px 16px;}
+    .ui-ft .fsp{display:none;}
+    .ui-ft .cp{width:100%;order:3;}
+    .ui-ft .fnav{width:100%;gap:18px;order:4;}
+  }
+</style>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#0E3D27"></rect>
+      <text x="600" y="410" text-anchor="middle" font-family="Georgia,'Playfair Display',serif" font-weight="900" font-size="150" fill="#FBF8F1">Disclaimer</text>
+      <circle cx="820" cy="410" r="16" fill="#FFC809"></circle>
+      <text x="600" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" letter-spacing="7" fill="#8ea78f">THE SMART INVESTOR</text>
+    </svg>
+  </template>
+
+  <div class="page">
+
+    <!-- top strip -->
+    <div class="ui-top">
+      <span class="date">Tuesday, 7 July 2026</span>
+      <span class="sp"></span>
+      <span class="nt">Stay informed. <b>No noise.</b></span>
+      <button class="ui-sub-btn">Subscribe</button>
+    </div>
+
+    <!-- header -->
+    <div class="ui-hd">
+      <div class="ui-logo"><a href="#"><span style="color:var(--g)">T</span><span style="color:var(--y)">S</span><span style="color:var(--g)">I</span><span class="dot">.</span></a><small>The Smart Investor — est. 2003 · revived 2023</small></div>
+      <div class="ui-hsp"></div>
+      <div class="ui-search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8a938b" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        <input placeholder="Search The Smart Investor">
+      </div>
+      <div class="ui-burger"><i></i><i></i><i></i></div>
+    </div>
+
+    <!-- leaderboard ad -->
+    <div class="ui-lb-wrap">
+      <div class="ui-lb">
+        <span class="ad-label">Advertisement</span>
+        <img src="assets/ad-leaderboard.png" alt="Advertisement">
+      </div>
+    </div>
+
+    <!-- 3-column shell: ad · content · ad -->
+    <div class="doc-shell">
+
+      <!-- left ad rail -->
+      <aside class="ad-rail left">
+        <div class="rail-lbl">Advertisement</div>
+        <div class="ad-box"><img src="assets/ad-skyscraper.jpg" alt="Advertisement"></div>
+      </aside>
+
+      <!-- content -->
+      <div class="doc-main">
+
+        <div class="doc-hero">
+          <span class="doc-kick">Legal · Editorial Policy</span>
+          <h1 class="doc-title">Disclaimer<span class="dot">.</span></h1>
+          <p class="doc-sub">The information published by The Smart Investor is provided for general education and information only — not as personal financial, investment, legal, or tax advice.</p>
+          <div class="doc-meta">
+            <span class="m"><b>Last updated</b> · 7 July 2026</span>
+            <span class="dv"></span>
+            <span class="m"><b>Applies to</b> · all TSI content &amp; channels</span>
+            <span class="dv"></span>
+            <span class="m"><b>Governing law</b> · Republic of Singapore</span>
+          </div>
+        </div>
+
+        <p class="doc-intro">By accessing The Smart Investor, you acknowledge and agree to the terms set out below. <b>If you do not agree, please discontinue use of the site.</b> Nothing here should be relied upon to make any financial decision without independent professional advice.</p>
+
+        <section class="sec" id="s1">
+          <h2><span class="num">01</span>General Information Only</h2>
+          <p>All articles, analyses, data, charts, and other material on The Smart Investor are published for <b>general information and educational purposes only</b>. They reflect the views of the respective authors at the time of writing and are not intended to address the particular circumstances of any individual reader.</p>
+          <p>Content does not constitute an offer, solicitation, or invitation to buy or sell any security, product, or service in any jurisdiction where such an activity would be unlawful.</p>
+        </section>
+
+        <section class="sec" id="s2">
+          <h2><span class="num">02</span>Not Financial Advice</h2>
+          <p>The Smart Investor is a media and publishing company. We are <b>not a licensed financial adviser, broker, or dealer</b>, and nothing on this site should be construed as personalised financial, investment, legal, accounting, or tax advice.</p>
+          <p>Your financial situation is unique. Before acting on any information you read here, you should consult a suitably qualified and licensed professional who can consider your specific objectives, circumstances, and risk tolerance.</p>
+        </section>
+
+        <section class="sec" id="s3">
+          <h2><span class="num">03</span>No Recommendations or Endorsements</h2>
+          <p>References to specific securities, companies, sectors, funds, or strategies are provided for illustration and discussion only. They are <b>not recommendations</b> to transact and should not be interpreted as such.</p>
+          <ul>
+            <li>We do not guarantee that any security or strategy discussed is suitable for you.</li>
+            <li>Mentions of a company do not imply any relationship, endorsement, or sponsorship.</li>
+            <li>Contributors may hold positions in securities they write about; where material, this is disclosed.</li>
+          </ul>
+        </section>
+
+        <section class="sec" id="s4">
+          <h2><span class="num">04</span>Accuracy &amp; Timeliness</h2>
+          <p>We take reasonable care to ensure information is accurate at the time of publication, drawing on sources we believe to be reliable. However, we make <b>no warranty or representation</b>, express or implied, as to its accuracy, completeness, or currency.</p>
+          <p>Markets move quickly. Figures, prices, and commentary may be out of date by the time you read them, and we are under no obligation to update any published material.</p>
+        </section>
+
+        <section class="sec" id="s5">
+          <h2><span class="num">05</span>Past Performance &amp; Forward-Looking Statements</h2>
+          <p><b>Past performance is not a reliable indicator of future results.</b> The value of investments and the income from them can fall as well as rise, and you may get back less than you invested.</p>
+          <p>Any forward-looking statements, projections, or estimates involve known and unknown risks and uncertainties. Actual outcomes may differ materially from those expressed or implied.</p>
+        </section>
+
+        <section class="sec" id="s6">
+          <h2><span class="num">06</span>Third-Party Content &amp; Links</h2>
+          <p>The site may contain links to, or content from, third parties. Such material is provided for convenience only. We do not control, endorse, or accept responsibility for the content, accuracy, or practices of any third-party site or source.</p>
+          <p>Following an external link is entirely at your own risk, and any dealings you have with third parties are solely between you and that party.</p>
+        </section>
+
+        <section class="sec" id="s7">
+          <h2><span class="num">07</span>Advertising &amp; Editorial Independence</h2>
+          <p>The Smart Investor may display advertising and may earn revenue from certain commercial arrangements. Advertising is clearly labelled and is kept <b>separate from our editorial decisions</b>.</p>
+          <p>Sponsored content, where present, is identified as such. Commercial relationships do not influence the opinions expressed in our independent editorial coverage.</p>
+        </section>
+
+        <section class="sec" id="s8">
+          <h2><span class="num">08</span>Limitation of Liability</h2>
+          <p>To the fullest extent permitted by law, The Smart Investor, its owners, employees, and contributors <b>accept no liability</b> for any loss or damage — direct, indirect, incidental, or consequential — arising from your use of, or reliance on, any information published on this site.</p>
+          <p>You use the site and act on its content entirely at your own discretion and risk.</p>
+        </section>
+
+        <section class="sec" id="s9">
+          <h2><span class="num">09</span>Changes to This Notice</h2>
+          <p>We may amend this disclaimer from time to time to reflect changes in our practices, services, or applicable law. The date at the top of this page indicates when it was last revised.</p>
+          <p>Your continued use of the site after any change constitutes acceptance of the revised terms.</p>
+        </section>
+
+        <section class="sec" id="s10">
+          <h2><span class="num">10</span>Contact</h2>
+          <p>If you have questions about this disclaimer or our editorial policy, please reach us at <a class="inl" href="#">editorial@thesmartinvestor.example</a>. We aim to respond to all reasonable enquiries.</p>
+        </section>
+
+        <div class="doc-note">
+          <div class="nk">Risk warning</div>
+          <p><b>Investing carries risk.</b> Capital is at risk and returns are not guaranteed. The Smart Investor does not provide personalised advice — always seek independent, licensed professional guidance before making any financial decision.</p>
+        </div>
+
+      </div>
+
+      <!-- right ad rail -->
+      <aside class="ad-rail right">
+        <div class="rail-lbl">Advertisement</div>
+        <div class="ad-box"><img src="assets/ad-skyscraper.jpg" alt="Advertisement"></div>
+      </aside>
+
+    </div>
+
+    <!-- footer -->
+    <div class="ui-ft">
+      <div class="fl">T<span style="color:var(--y)">S</span>I<span class="dot">.</span></div>
+      <span class="cp">© 2026 The Smart Investor</span>
+      <div class="fsp"></div>
+      <div class="fnav"><a href="#" class="on">Disclaimer</a><a href="#">About</a><a href="#">Contact</a></div>
+    </div>
+
+  </div>
+</body>
+</html>

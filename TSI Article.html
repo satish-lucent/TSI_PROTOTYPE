@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Article — The Smart Investor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --g:#029547;--g-deep:#0E5A30;--y:#FFC809;--ink:#1C2620;--ink-mid:#55605A;
+    --ink-soft:#8c8b7e;--line:#E7E0D1;--line-mid:#D6CCB7;--paper:#FBF8F1;--wash:#F2EDE0;--g-wash:#ECF2EA;
+    --bar:#0E3D27;--page-w:1440px;
+  }
+  html,body{background:var(--wash);}
+  body{font-family:'Archivo',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;}
+  a{text-decoration:none;color:inherit;}
+  .page{width:100%;max-width:var(--page-w);margin:0 auto;background:var(--paper);min-height:100vh;box-shadow:0 0 60px rgba(0,0,0,.05);}
+
+  /* top strip */
+  .ui-top{display:flex;align-items:center;gap:20px;padding:11px 56px;background:var(--bar);color:#fff;}
+  .ui-top .date{font-size:12px;letter-spacing:.4px;color:#bcc7b7;}
+  .ui-top .sp{flex:1;}
+  .ui-top .nt{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:#fff;}
+  .ui-sub-btn{font-family:'Archivo';font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--y);color:var(--ink);border:0;border-radius:4px;padding:9px 20px;cursor:pointer;transition:.15s;}
+  .ui-sub-btn:hover{filter:brightness(.94);}
+
+  /* header */
+  .ui-hd{display:flex;align-items:center;gap:26px;padding:26px 56px;}
+  .ui-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:58px;line-height:.9;letter-spacing:-1px;color:var(--ink);}
+  .ui-logo .dot{color:var(--y);}
+  .ui-logo small{display:block;font-family:'Archivo';font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);margin-top:9px;}
+  .ui-hsp{flex:1;}
+  .ui-search{display:flex;align-items:center;gap:9px;border:1.5px solid var(--line-mid);border-radius:30px;padding:9px 18px;min-width:260px;}
+  .ui-search input{border:0;outline:0;background:transparent;font-family:'Archivo';font-size:13.5px;color:var(--ink);width:100%;}
+  .ui-search input::placeholder{color:var(--ink-soft);}
+  .ui-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+  .ui-burger i{width:26px;height:2px;background:var(--ink);display:block;border-radius:2px;}
+
+  /* leaderboard ad */
+  .ui-lb-wrap{padding:24px 56px;}
+  .ui-lb{border:2px solid var(--ink);padding:8px;position:relative;background:var(--paper);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .ui-lb img{display:block;width:100%;height:auto;}
+  .ad-label{position:absolute;top:8px;right:8px;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#8f8c82;background:rgba(251,248,241,.85);padding:3px 7px;border-radius:3px;}
+
+  /* 3-col shell */
+  .art-shell{display:grid;grid-template-columns:160px minmax(0,1fr) 160px;gap:48px;padding:12px 56px 72px;align-items:start;}
+  .ad-rail{position:sticky;top:24px;}
+  .ad-rail .rlbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink-soft);text-align:center;margin-bottom:8px;}
+  .ad-rail .rbox{border:1px solid var(--line-mid);background:var(--wash);overflow:hidden;}
+  .ad-rail .rbox img{display:block;width:100%;height:auto;}
+
+  /* article */
+  .article{max-width:760px;margin:0 auto;}
+  .crumb{font-size:12px;color:var(--ink-soft);letter-spacing:.3px;margin-bottom:22px;}
+  .crumb a:hover{color:var(--g-deep);}
+  .crumb .sep{margin:0 8px;color:var(--line-mid);}
+  .art-cat{font-size:11.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--g);margin-bottom:14px;}
+  .art-title{font-family:'Playfair Display',serif;font-weight:900;font-size:52px;line-height:1.05;letter-spacing:-1.2px;color:var(--ink);}
+  .art-dek{font-family:'Playfair Display',serif;font-style:italic;font-size:22px;line-height:1.45;color:var(--ink-mid);margin-top:20px;}
+  .art-meta{display:flex;align-items:center;gap:14px;margin:26px 0 0;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .art-meta .av{width:44px;height:44px;border-radius:50%;background:var(--g-wash);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:18px;color:var(--g-deep);flex:none;}
+  .art-meta .who{flex:1;}
+  .art-meta .who .by{font-size:14px;font-weight:600;color:var(--ink);transition:.15s;}
+  .art-meta .who a.by:hover{color:var(--g-deep);text-decoration:underline;}
+  .art-meta .who .tm{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+  .art-meta .share{display:flex;gap:8px;}
+  .art-meta .share a{width:36px;height:36px;border:1.5px solid var(--line-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-mid);transition:.15s;}
+  .art-meta .share a:hover{background:var(--g-deep);border-color:var(--g-deep);color:#fff;}
+
+  .art-hero{margin:32px 0 8px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--g-wash);aspect-ratio:16/9;}
+  .art-hero img{width:100%;height:100%;object-fit:cover;display:block;}
+  .art-cap{font-size:12px;color:var(--ink-soft);margin:10px 2px 0;line-height:1.5;}
+
+  .art-body{margin-top:30px;}
+  .art-body p{font-size:17.5px;line-height:1.8;color:#2c352f;margin-bottom:22px;}
+  .art-body p.lead-p:first-of-type::first-letter{font-family:'Playfair Display',serif;font-weight:900;font-size:70px;line-height:.8;float:left;padding:6px 12px 0 0;color:var(--g-deep);}
+  .art-body h2{font-family:'Playfair Display',serif;font-weight:700;font-size:28px;letter-spacing:-.4px;color:var(--ink);margin:40px 0 16px;}
+  .art-body a.inl{color:var(--g-deep);border-bottom:1px solid var(--line-mid);}
+  .art-body a.inl:hover{border-color:var(--g-deep);}
+  .art-body blockquote{margin:36px 0;padding:8px 0 8px 28px;border-left:3px solid var(--g);}
+  .art-body blockquote p{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:26px;line-height:1.4;color:var(--ink);margin:0;}
+  .art-body blockquote cite{display:block;font-family:'Archivo';font-style:normal;font-size:13px;font-weight:600;letter-spacing:.3px;color:var(--ink-soft);margin-top:14px;}
+  .art-body ul{margin:0 0 22px;padding-left:0;list-style:none;}
+  .art-body li{font-size:17px;line-height:1.75;color:#2c352f;padding-left:26px;position:relative;margin-bottom:12px;}
+  .art-body li::before{content:'';position:absolute;left:4px;top:12px;width:6px;height:6px;background:var(--g);border-radius:50%;}
+
+  .art-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:40px;padding-top:26px;border-top:1px solid var(--line);}
+  .art-tags a{font-size:12.5px;color:var(--ink-mid);border:1px solid var(--line-mid);border-radius:30px;padding:6px 15px;background:var(--paper);transition:.15s;}
+  .art-tags a:hover{background:var(--g);color:#fff;border-color:var(--g);}
+
+  /* engagement stats bar */
+  .art-stats{display:flex;align-items:center;gap:20px;margin-top:18px;padding:15px 0;border-bottom:1px solid var(--line);flex-wrap:wrap;}
+  .art-stats .stat{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink-mid);}
+  .art-stats .stat svg{color:var(--ink-soft);flex:none;}
+  .art-stats .stat b{color:var(--ink);font-weight:700;}
+  .art-stats .ssp{flex:1;}
+  .art-stats .shlbl{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--ink-soft);}
+  .art-stats .share{display:flex;gap:8px;}
+  .art-stats .share a{width:34px;height:34px;border:1.5px solid var(--line-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--ink-mid);transition:.15s;cursor:pointer;}
+  .art-stats .share a:hover{background:var(--g-deep);border-color:var(--g-deep);color:#fff;}
+
+  /* comments */
+  .comments{margin-top:46px;padding-top:30px;border-top:2px solid var(--ink);}
+  .comments h2{font-family:'Playfair Display',serif;font-weight:700;font-size:26px;letter-spacing:-.4px;color:var(--ink);margin-bottom:6px;}
+  .comments .csub{font-size:13px;color:var(--ink-soft);margin-bottom:24px;}
+  .cbox{background:var(--wash);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:32px;}
+  .cbox .crow{display:flex;gap:12px;margin-bottom:12px;}
+  .cbox input{flex:1;min-width:0;font-family:'Archivo';font-size:14px;color:var(--ink);background:var(--paper);border:1.5px solid var(--line-mid);border-radius:8px;padding:11px 13px;outline:0;transition:.15s;}
+  .cbox textarea{width:100%;font-family:'Archivo';font-size:14px;color:var(--ink);background:var(--paper);border:1.5px solid var(--line-mid);border-radius:8px;padding:12px 13px;outline:0;resize:vertical;min-height:90px;line-height:1.55;transition:.15s;}
+  .cbox input:focus,.cbox textarea:focus{border-color:var(--g);}
+  .cbox .cfoot{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:12px;}
+  .cbox .chint{font-size:12px;color:var(--ink-soft);}
+  .cbox .cpost{font-family:'Archivo';font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;background:var(--g-deep);color:#fff;border:0;border-radius:30px;padding:12px 26px;cursor:pointer;transition:.15s;flex:none;}
+  .cbox .cpost:hover{background:var(--g);}
+  .clist{display:flex;flex-direction:column;gap:24px;}
+  .citem{display:flex;gap:14px;}
+  .citem .cav{width:42px;height:42px;border-radius:50%;background:var(--g-wash);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-weight:900;font-size:17px;color:var(--g-deep);flex:none;}
+  .citem .cbody{flex:1;min-width:0;}
+  .citem .chead{display:flex;align-items:baseline;gap:10px;margin-bottom:5px;}
+  .citem .cname{font-size:14px;font-weight:700;color:var(--ink);}
+  .citem .cwhen{font-size:12px;color:var(--ink-soft);}
+  .citem p{font-size:14.5px;line-height:1.65;color:#2c352f;margin:0 0 9px;}
+  .citem .cact{display:flex;gap:18px;}
+  .citem .cact button{background:none;border:0;font-family:'Archivo';font-size:12px;font-weight:600;color:var(--ink-soft);cursor:pointer;padding:0;transition:.15s;}
+  .citem .cact button:hover{color:var(--g-deep);}
+  .citem .cact button.liked{color:var(--g-deep);}
+
+  /* footer */
+  .ui-ft{display:flex;align-items:center;gap:22px;padding:26px 56px;background:var(--bar);color:#fff;}
+  .ui-ft .fl{font-family:'Playfair Display',serif;font-weight:900;font-size:32px;line-height:1;letter-spacing:-.5px;color:#fff;}
+  .ui-ft .fl .dot{color:var(--y);}
+  .ui-ft .cp{font-size:12px;color:#bcc7b7;}
+  .ui-ft .fsp{flex:1;}
+  .ui-ft .fnav{display:flex;gap:22px;}
+  .ui-ft .fnav a{font-size:13px;color:#dfe7dd;transition:.15s;}
+  .ui-ft .fnav a:hover{color:var(--y);}
+
+  /* responsive */
+  @media (max-width:768px){
+    html,body{overflow-x:hidden;}
+    .page{box-shadow:none;}
+    .ui-top{flex-wrap:wrap;gap:6px 12px;padding:10px 16px;}
+    .ui-top .sp{display:none;}
+    .ui-top .nt{font-size:13px;order:3;width:100%;}
+    .ui-hd{flex-wrap:wrap;gap:12px;padding:16px 16px;}
+    .ui-logo{font-size:34px;flex:1;}
+    .ui-logo small{font-size:9.5px;margin-top:6px;}
+    .ui-hsp{display:none;}
+    .ui-search{order:3;width:100%;min-width:0;}
+    .ui-burger{order:2;}
+    .ui-lb-wrap{padding:14px 16px;}
+    .art-shell{grid-template-columns:1fr;gap:32px;padding:16px 16px 48px;}
+    .ad-rail{position:static;display:flex;flex-direction:column;align-items:center;order:2;}
+    .ad-rail.left{order:0;}
+    .article{order:1;max-width:100%;}
+    .art-title{font-size:34px;letter-spacing:-.6px;}
+    .art-dek{font-size:18px;}
+    .art-body p{font-size:16.5px;}
+    .art-stats{gap:14px 18px;}
+    .cbox .crow{flex-direction:column;}
+    .ui-ft{flex-wrap:wrap;gap:12px 18px;padding:24px 16px;}
+    .ui-ft .fsp{display:none;}
+    .ui-ft .cp{width:100%;order:3;}
+    .ui-ft .fnav{width:100%;gap:18px;order:4;}
+  }
+</style>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#0E3D27"></rect>
+      <text x="600" y="420" text-anchor="middle" font-family="Georgia,'Playfair Display',serif" font-weight="900" font-size="130" fill="#FBF8F1">Article</text>
+      <text x="600" y="500" text-anchor="middle" font-family="Arial,sans-serif" font-size="28" letter-spacing="7" fill="#8ea78f">THE SMART INVESTOR</text>
+    </svg>
+  </template>
+
+  <div class="page">
+
+    <!-- top strip -->
+    <div class="ui-top">
+      <span class="date" id="topDate">Monday, 15 June 2026</span>
+      <span class="sp"></span>
+      <span class="nt">Stay informed. <b>No noise.</b></span>
+      <button class="ui-sub-btn">Subscribe</button>
+    </div>
+
+    <!-- header -->
+    <div class="ui-hd">
+      <div class="ui-logo"><a href="TSI HM V4 - Standalone.html"><span style="color:var(--g)">T</span><span style="color:var(--y)">S</span><span style="color:var(--g)">I</span><span class="dot">.</span></a><small>The Smart Investor — est. 2003 · revived 2023</small></div>
+      <div class="ui-hsp"></div>
+      <div class="ui-search">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#8a938b" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.35-4.35"></path></svg>
+        <input placeholder="Search The Smart Investor">
+      </div>
+      <div class="ui-burger" onclick="openMenu()"><i></i><i></i><i></i></div>
+    </div>
+
+    <!-- leaderboard ad (kept as is) -->
+    <div class="ui-lb-wrap">
+      <div class="ui-lb"><span class="ad-label">Advertisement</span><img src="assets/ad-leaderboard.png" alt="Advertisement"></div>
+    </div>
+
+    <!-- 3-col shell -->
+    <div class="art-shell">
+      <aside class="ad-rail left"><div class="rlbl">Advertisement</div><div class="rbox"><img src="assets/ad-skyscraper.jpg" alt="Advertisement"></div></aside>
+
+      <article class="article">
+        <div class="crumb"><a href="TSI HM V4 - Standalone.html">Home</a><span class="sep">/</span><a href="#" id="crumbCat">Nation</a><span class="sep">/</span><span>Article</span></div>
+        <div class="art-cat" id="artCat">Fiscal Policy</div>
+        <h1 class="art-title" id="artTitle">Parliament passes landmark fiscal reform after marathon session</h1>
+        <p class="art-dek" id="artDek">The overnight vote reshapes capital-gains treatment and the SST base for the first time in a decade — analysts call it the most consequential budget bill in years.</p>
+
+        <div class="art-meta">
+          <div class="av" id="artAv">N</div>
+          <div class="who">
+            <a class="by" id="artBy" href="TSI Author.html">Nurul Iman</a>
+            <div class="tm" id="artTm">2 hours ago · 6 min read</div>
+          </div>
+        </div>
+
+        <div class="art-stats">
+          <span class="stat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg><b id="statViews">1,240</b>&nbsp;views</span>
+          <a class="stat" href="#comments" style="text-decoration:none;color:inherit"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.9-.9L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"/></svg><b id="statComments">3</b>&nbsp;comments</a>
+          <span class="ssp"></span>
+          <span class="shlbl">Share</span>
+          <div class="share">
+            <a id="shX" target="_blank" rel="noopener" aria-label="Share on X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.5 8.6L23.3 22h-6.8l-5.3-7-6.1 7H2l8-9.2L1.2 2H8l4.8 6.4L18.9 2zm-2.4 18h1.9L7.6 4H5.6l10.9 16z"/></svg></a>
+            <a id="shLi" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.4 8.65 22 11 22 14.1V21h-4v-6.1c0-1.45-.03-3.3-2-3.3-2 0-2.3 1.57-2.3 3.2V21h-4z"/></svg></a>
+            <a id="shCopy" href="#" aria-label="Copy link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></a>
+          </div>
+        </div>
+
+        <figure class="art-hero"><img id="artImg" src="assets/art-1.jpg" alt=""></figure>
+        <p class="art-cap" id="artCap">The chamber sat past 3am before the reform bill cleared its final reading. — TSI file photo</p>
+
+        <div class="art-body" id="artBody">
+          <p class="lead-p">In a session that stretched deep into the early hours, lawmakers approved a sweeping package of fiscal measures that will reshape how investment income is taxed and how the state funds its next decade of spending. The bill passed on a narrow margin after nearly eleven hours of debate.</p>
+          <p>The reform overhauls the capital-gains framework for the first time since the early 2010s, introducing tiered bands intended to shield smaller, long-term investors while asking more of short-horizon, high-frequency activity. Officials framed the change as a rebalancing rather than a tax rise, though critics were quick to question the timing.</p>
+          <h2>What changes, and when</h2>
+          <p>Treasury has confirmed the new bands will take effect at the start of the next fiscal year, with a transitional window for positions already held. For most retail investors, the practical impact is expected to be modest; the heavier adjustments fall on entities and trading structures that turn over holdings rapidly.</p>
+          <ul>
+            <li>Long-term holdings retain their existing, more favourable treatment.</li>
+            <li>A new upper band applies to short-horizon gains above a set threshold.</li>
+            <li>The SST base broadens gradually across selected service sectors.</li>
+          </ul>
+          <blockquote>
+            <p>“This is the most consequential budget bill we have seen in a decade — not because of what it raises, but because of what it signals about the years ahead.”</p>
+            <cite>— Independent fiscal analyst, briefed on the measures</cite>
+          </blockquote>
+          <p>Markets took the news in stride. Early indications pointed to a muted reaction among blue-chip names, while sectors most exposed to the widened service-tax base saw sharper, if orderly, repricing. Analysts cautioned that the full effect would only become clear once the transitional guidance is published in the coming weeks.</p>
+          <h2>The road ahead</h2>
+          <p>Attention now turns to implementation. The central bank and revenue authority are expected to release detailed guidance shortly, and industry groups have signalled they will seek clarifications on edge cases. For readers, the immediate takeaway is simple: review your holding periods, and read the fine print when it lands.</p>
+          <p>The Smart Investor will continue to track the rollout, with follow-up analysis on how the new bands interact with existing reliefs and what they mean for portfolio construction in the year ahead.</p>
+        </div>
+
+        <div class="art-tags">
+          <a href="#">#budget2026</a><a href="#">#fiscalpolicy</a><a href="#">#capitalgains</a><a href="#">#markets</a><a href="#">#governance</a>
+        </div>
+
+        <section class="comments" id="comments">
+          <h2>Comments <span style="color:var(--ink-soft);font-weight:400">(<span id="cCount">3</span>)</span></h2>
+          <div class="csub">Join the conversation — please keep it respectful and on topic.</div>
+          <div class="cbox">
+            <div class="crow"><input id="cName" type="text" placeholder="Your name"></div>
+            <textarea id="cText" placeholder="Add a comment…"></textarea>
+            <div class="cfoot"><span class="chint">Comments are moderated before appearing publicly.</span><button class="cpost" id="cPost">Post comment</button></div>
+          </div>
+          <div class="clist" id="clist"></div>
+        </section>
+      </article>
+
+      <aside class="ad-rail right"><div class="rlbl">Advertisement</div><div class="rbox"><img src="assets/ad-skyscraper.jpg" alt="Advertisement"></div></aside>
+    </div>
+
+    <!-- footer -->
+    <div class="ui-ft">
+      <div class="fl">T<span style="color:var(--y)">S</span>I<span class="dot">.</span></div>
+      <span class="cp">© 2026 The Smart Investor</span>
+      <div class="fsp"></div>
+      <div class="fnav"><a href="TSI HM V4 - Standalone.html?disc=1">Disclaimer</a><a href="TSI About.html">About</a><a href="TSI Contact.html">Contact</a></div>
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById('topDate').textContent =
+      new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+
+    // fill from querystring if provided (title, cat, by, time, img, dek, catkey)
+    const q = new URLSearchParams(location.search);
+    const set = (id, val) => { if(val){ const el = document.getElementById(id); if(el) el.textContent = val; } };
+    const title = q.get('title');
+    if(title) document.getElementById('artTitle').textContent = title;
+    set('artCat', q.get('cat'));
+    set('crumbCat', q.get('cat'));
+    set('artBy', q.get('by'));
+    set('artTm', q.get('time'));
+    if(q.get('dek')) document.getElementById('artDek').textContent = q.get('dek');
+    if(q.get('img')) document.getElementById('artImg').src = q.get('img');
+    const by = q.get('by');
+    if(by) document.getElementById('artAv').textContent = by.trim().charAt(0).toUpperCase();
+    document.getElementById('artBy').href = 'TSI Author.html?name=' + encodeURIComponent(by || document.getElementById('artBy').textContent);
+    const catkey = q.get('catkey');
+    if(catkey) document.getElementById('crumbCat').href = 'TSI Category.html?cat=' + catkey;
+    if(title) document.title = title + ' — The Smart Investor';
+    // caption fallback tied to category
+    if(q.get('cat')) document.getElementById('artCap').textContent = q.get('cat') + ' — The Smart Investor';
+
+    // ---- views · comments · share ----
+    (function(){
+      function esc(s){ return (s||'').replace(/[&<>"]/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]; }); }
+      function hash(s){ var h=0; for(var i=0;i<s.length;i++){ h=(h<<5)-h+s.charCodeAt(i); h|=0; } return Math.abs(h); }
+
+      var artKey = (q.get('title') || document.getElementById('artTitle').textContent || 'article');
+      var slug = 'tsi_' + hash(artKey);
+
+      // view count — seed a stable base per article, +1 each visit
+      var vKey = slug + '_v';
+      var base = 900 + (hash(artKey) % 4200);
+      var views = parseInt(localStorage.getItem(vKey) || String(base), 10) + 1;
+      localStorage.setItem(vKey, String(views));
+      document.getElementById('statViews').textContent = views.toLocaleString();
+
+      // share links
+      var url = location.href;
+      var shX = document.getElementById('shX');
+      var shLi = document.getElementById('shLi');
+      shX.href = 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(artKey) + '&url=' + encodeURIComponent(url);
+      shLi.href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url);
+      var shCopy = document.getElementById('shCopy');
+      shCopy.addEventListener('click', function(e){
+        e.preventDefault();
+        try { navigator.clipboard.writeText(url); } catch(err) {}
+        var old = shCopy.style.background, oc = shCopy.style.color, ob = shCopy.style.borderColor;
+        shCopy.style.background = 'var(--g-deep)'; shCopy.style.color = '#fff'; shCopy.style.borderColor = 'var(--g-deep)';
+        setTimeout(function(){ shCopy.style.background=old; shCopy.style.color=oc; shCopy.style.borderColor=ob; }, 1200);
+      });
+
+      // comments — seeded, persisted per article in localStorage
+      var cKey = slug + '_c';
+      var seed = [
+        { n:'Wei Lin Ho', w:'3 hours ago', t:'Clear breakdown of the new bands. The transitional window is the part most readers will overlook — glad it was flagged here.', likes:12 },
+        { n:'Devi Ananthan', w:'5 hours ago', t:'Would love a follow-up on how this interacts with existing reliefs for long-term holders.', likes:7 },
+        { n:'Marcus Lee', w:'Yesterday', t:'Measured coverage as always. Other outlets are calling it a tax hike; this is the only piece that explained the rebalancing properly.', likes:21 }
+      ];
+      var comments;
+      try { comments = JSON.parse(localStorage.getItem(cKey)) || seed.slice(); } catch(e){ comments = seed.slice(); }
+
+      function renderComments(){
+        document.getElementById('cCount').textContent = comments.length;
+        document.getElementById('statComments').textContent = comments.length;
+        document.getElementById('clist').innerHTML = comments.map(function(c, i){
+          var initial = (c.n || '?').trim().charAt(0).toUpperCase();
+          return '<div class="citem">'+
+            '<div class="cav">'+esc(initial)+'</div>'+
+            '<div class="cbody">'+
+              '<div class="chead"><span class="cname">'+esc(c.n)+'</span><span class="cwhen">'+esc(c.w)+'</span></div>'+
+              '<p>'+esc(c.t)+'</p>'+
+              '<div class="cact"><button data-i="'+i+'" class="likeBtn">Like ('+(c.likes||0)+')</button><button>Reply</button></div>'+
+            '</div>'+
+          '</div>';
+        }).join('');
+        [].forEach.call(document.querySelectorAll('.likeBtn'), function(b){
+          b.addEventListener('click', function(){
+            var i = +b.getAttribute('data-i');
+            comments[i].likes = (comments[i].likes||0) + 1;
+            localStorage.setItem(cKey, JSON.stringify(comments));
+            renderComments();
+          });
+        });
+      }
+      renderComments();
+
+      document.getElementById('cPost').addEventListener('click', function(){
+        var nameEl = document.getElementById('cName');
+        var textEl = document.getElementById('cText');
+        var t = textEl.value.trim();
+        if(!t){ textEl.style.borderColor = '#c0392b'; textEl.focus(); return; }
+        textEl.style.borderColor = '';
+        comments.unshift({ n: nameEl.value.trim() || 'Guest reader', w: 'Just now', t: t, likes: 0 });
+        localStorage.setItem(cKey, JSON.stringify(comments));
+        nameEl.value = ''; textEl.value = '';
+        renderComments();
+      });
+    })();
+  </script>
+
+  <style>
+  .nav-menu{position:fixed;inset:0;z-index:10000;background:var(--bar);color:#fff;display:none;flex-direction:column;padding:26px 56px 40px;overflow-y:auto;}
+  .nav-menu.open{display:flex;}
+  .nav-menu .nm-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.15);}
+  .nav-menu .nm-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;letter-spacing:-1px;color:#fff;}
+  .nav-menu .nm-logo .dot{color:var(--y);}
+  .nav-menu .nm-close{font-family:'Archivo';font-size:13px;font-weight:600;letter-spacing:.5px;color:#fff;background:rgba(255,255,255,.12);border:0;border-radius:30px;padding:10px 20px;cursor:pointer;transition:.15s;}
+  .nav-menu .nm-close:hover{background:rgba(255,255,255,.22);}
+  .nav-menu .nm-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:48px;padding:40px 0;}
+  .nav-menu .nm-h{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--y);margin-bottom:18px;}
+  .nav-menu .nm-sections a{display:block;font-family:'Playfair Display',serif;font-weight:700;font-size:32px;letter-spacing:-.5px;color:#fff;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1);transition:.15s;}
+  .nav-menu .nm-sections a:hover{color:var(--y);}
+  .nav-menu .nm-sections a .ct{display:block;font-family:'Archivo';font-size:12px;font-weight:500;letter-spacing:.5px;color:#9fb4a6;margin-top:4px;}
+  .nav-menu .nm-pages a{display:block;font-family:'Archivo';font-size:16px;color:#dfe7dd;padding:10px 0;transition:.15s;}
+  .nav-menu .nm-pages a:hover{color:var(--y);}
+  .nav-menu .nm-foot{margin-top:auto;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);}
+  .nav-menu .nm-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;}
+  .nav-menu .nm-tags a{font-size:12.5px;color:#dfe7dd;border:1px solid rgba(255,255,255,.2);border-radius:30px;padding:6px 15px;transition:.15s;}
+  .nav-menu .nm-tags a:hover{background:var(--y);color:var(--ink);border-color:var(--y);}
+  @media (max-width:768px){
+    .nav-menu{padding:22px 18px 30px;}
+    .nav-menu .nm-grid{grid-template-columns:1fr;gap:28px;padding:24px 0 8px;}
+    .nav-menu .nm-sections a{font-size:24px;}
+    .nav-menu .nm-logo{font-size:30px;}
+  }
+  </style>
+  <div class="nav-menu" id="mainMenu">
+    <div class="nm-top">
+      <div class="nm-logo">T<span style="color:var(--y)">S</span>I<span class="dot">.</span></div>
+      <button class="nm-close" onclick="closeMenu()">Close ✕</button>
+    </div>
+    <div class="nm-grid">
+      <div class="nm-sections">
+        <div class="nm-h">Sections</div>
+        <a href="TSI Category.html?cat=nation">Nation<span class="ct">Policy · Economy</span></a>
+        <a href="TSI Category.html?cat=decisions">Decisions<span class="ct">Boardrooms · Power</span></a>
+        <a href="TSI Category.html?cat=asia">What's News Asia<span class="ct">ASEAN · China</span></a>
+      </div>
+      <div class="nm-company">
+        <div class="nm-h">The Company</div>
+        <div class="nm-pages">
+          <a href="TSI About.html">About Us</a>
+          <a href="TSI Contact.html">Contact Us</a>
+          <a href="TSI HM V4 - Standalone.html?disc=1">Disclaimer</a>
+        </div>
+      </div>
+    </div>
+    <div class="nm-foot">
+      <div class="nm-h">Trending topics</div>
+      <div class="nm-tags">
+        <a href="#">#business</a><a href="#">#markets</a><a href="#">#politics</a><a href="#">#economy</a><a href="#">#budget2026</a><a href="#">#property</a><a href="#">#klse</a><a href="#">#esg</a><a href="#">#tech</a><a href="#">#asean</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    function openMenu(){document.getElementById('mainMenu').classList.add('open');document.body.style.overflow='hidden';}
+    function closeMenu(){document.getElementById('mainMenu').classList.remove('open');document.body.style.overflow='';}
+  </script>
+
+</body>
+</html>
